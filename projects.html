@@ -9,8 +9,40 @@
 </head>
 
 <body>
+  <!-- Direktlink zum Hauptinhalt für Tastaturnutzer -->
   <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
+  <!-- Einstellungen für Barrierefreiheit und Darstellung -->
+  <section class="settings" aria-labelledby="settings-title">
+    <div class="container">
+      <h2 id="settings-title">Einstellungen</h2>
+
+      <div class="settings-group">
+        <h3>Schriftgröße</h3>
+        <button type="button" aria-label="Schriftgröße verkleinern">-</button>
+        <span>16px</span>
+        <button type="button" aria-label="Schriftgröße vergrößern">+</button>
+        <button type="button" aria-label="Schriftgröße zurücksetzen">Zurücksetzen</button>
+      </div>
+
+      <div class="settings-group">
+        <h3>Dunkler Modus</h3>
+        <button type="button" aria-pressed="false">Deaktiviert</button>
+      </div>
+
+      <div class="settings-group">
+        <h3>Hoher Kontrast</h3>
+        <button type="button" aria-pressed="false">Deaktiviert</button>
+      </div>
+
+      <div class="settings-group">
+        <h3>Animationen reduzieren</h3>
+        <button type="button" aria-pressed="false">Deaktiviert</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Hauptnavigation -->
   <header class="site-header">
     <nav class="main-nav" aria-label="Hauptnavigation">
       <a class="logo" href="index.html">Tim Koch</a>
@@ -29,9 +61,11 @@
     </nav>
   </header>
 
+  <!-- Seiteninhalt -->
   <main id="main-content">
   </main>
 
+  <!-- Footer mit Links und Kontaktmöglichkeiten -->
   <footer class="site-footer">
     <div class="container">
       <section class="footer-section" aria-labelledby="footer-portfolio">
