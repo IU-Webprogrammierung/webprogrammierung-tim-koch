@@ -13,10 +13,10 @@
   <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
 
   <!-- Einstellungen für Barrierefreiheit und Darstellung -->
-  <section class="settings" aria-labelledby="settings-title">
-    <div class="container">
-      <h2 id="settings-title">Einstellungen</h2>
+  <details class="settings">
+    <summary>Einstellungen</summary>
 
+    <div class="container">
       <div class="settings-group">
         <h3>Schriftgröße</h3>
         <button type="button" aria-label="Schriftgröße verkleinern">-</button>
@@ -40,7 +40,7 @@
         <button type="button" aria-pressed="false">Deaktiviert</button>
       </div>
     </div>
-  </section>
+  </details>
 
   <!-- Hauptnavigation -->
   <header class="site-header">
@@ -63,6 +63,110 @@
 
   <!-- Seiteninhalt -->
   <main id="main-content">
+    <!-- Hero-Bereich -->
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <h1 id="hero-title">Tim Koch</h1>
+        <p>Medieninformatiker mit Freude an Webentwicklung, Gestaltung und kreativen Projekten</p>
+        <a class="button button-primary" href="projects.html">Projekte ansehen</a>
+      </div>
+    </section>
+
+    <!-- Teaser zu den Hauptbereichen -->
+    <section class="teaser-section" aria-labelledby="teaser-title">
+      <div class="container">
+        <h2 id="teaser-title">Bereiche</h2>
+
+        <article class="teaser-card">
+          <a class="teaser-card-link" href="about.html">
+            <h3>Über mich</h3>
+            <p>Lerne mich etwas besser kennen: meinen Weg, meine Interessen und die Themen, die mich begeistern.</p>
+            <span>Mehr erfahren</span>
+          </a>
+        </article>
+
+        <article class="teaser-card">
+          <a class="teaser-card-link" href="video.html">
+            <h3>Videografie</h3>
+            <p>Videografie ist mein kreatives Hobby: Ich halte Momente fest und erzähle Erlebtes in kurzen Clips.</p>
+            <span>Videos ansehen</span>
+          </a>
+        </article>
+
+        <article class="teaser-card">
+          <a class="teaser-card-link" href="projects.html">
+            <h3>Projekte</h3>
+            <p>Ein Einblick in Dinge, die ich gebaut, ausprobiert oder im Studium weiterentwickelt habe.</p>
+            <span>Alle Projekte</span>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Ausgewählte Projekte und Videografie-Arbeiten -->
+    <section class="featured-work" aria-labelledby="featured-work-title">
+      <div class="container">
+        <h2 id="featured-work-title">Ausgewählte Arbeiten</h2>
+
+        <article class="work-card">
+          <a class="work-card-link" href="projects.html">
+            <figure>
+              <img src="images/placeholder-planteller.jpg" alt="Vorschau des Projekts PlanTeller">
+              <figcaption>PlanTeller</figcaption>
+            </figure>
+            <h3>PlanTeller</h3>
+            <p>Eine Android App rund ums Kochen, Planen und Organisieren von Rezepten mit Unterstützung durch KI.</p>
+            <ul class="tag-list" aria-label="Verwendete Technologien">
+              <li>Kotlin</li>
+              <li>TypeScript</li>
+              <li>Docker</li>
+              <li>Node.js</li>
+              <li>OpenAI</li>
+            </ul>
+          </a>
+        </article>
+
+        <article class="work-card">
+          <a class="work-card-link" href="projects.html">
+            <figure>
+              <img src="images/placeholder-webpraesenz.jpg" alt="Vorschau der Webpräsenz für PlanTeller">
+              <figcaption>Webpräsenz für PlanTeller</figcaption>
+            </figure>
+            <h3>Webpräsenz für PlanTeller</h3>
+            <p>Eine begleitende Webseite, die die Idee hinter PlanTeller verständlich und übersichtlich vorstellt.</p>
+            <ul class="tag-list" aria-label="Verwendete Technologien">
+              <li>HTML</li>
+              <li>CSS</li>
+            </ul>
+          </a>
+        </article>
+
+        <article class="work-card">
+          <a class="work-card-link" href="video.html">
+            <figure>
+              <img src="images/placeholder-video.jpg" alt="Vorschau eines Videoprojekts">
+              <figcaption>Videoprojekt</figcaption>
+            </figure>
+            <h3>Videoprojekt</h3>
+            <p>Eine Alltagstätigkeit, filmisch erzählt mit Fokus auf Bildgestaltung, Schnitt und Stimmung.</p>
+            <ul class="tag-list" aria-label="Schwerpunkte">
+              <li>Kamera</li>
+              <li>Schnitt</li>
+              <li>Storytelling</li>
+            </ul>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Kontaktaufruf -->
+    <section class="cta-section" aria-labelledby="cta-title">
+      <div class="container">
+        <h2 id="cta-title">Lust auf Austausch?</h2>
+        <p>Wenn dich meine Arbeit interessiert oder du einfach Kontakt aufnehmen möchtest, freue ich mich über eine Nachricht.</p>
+        <a class="button button-primary" href="mailto:tim.koch1@iu-study.org">Kontakt aufnehmen</a>
+      </div>
+    </section>
   </main>
 
   <!-- Footer mit Links und Kontaktmöglichkeiten -->
