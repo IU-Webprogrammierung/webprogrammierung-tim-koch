@@ -63,6 +63,112 @@
 
   <!-- Seiteninhalt -->
   <main id="main-content">
+    <!-- Einleitung -->
+    <section class="page-hero" aria-labelledby="video-title">
+      <div class="container">
+        <h1 id="video-title">Videografie</h1>
+        <p>
+          Eine Sammlung kleiner Videoprojekte und Short Clips. Videografie ist mein Hobby:
+          Ich halte Momente fest und erzähle Erlebtes in kurzen Clips.
+        </p>
+      </div>
+    </section>
+
+    <!-- Videoübersicht -->
+    <section class="video-gallery" aria-labelledby="video-gallery-title">
+      <div class="container">
+        <h2 id="video-gallery-title">Ausgewählte Videos</h2>
+
+        <article class="video-card">
+          <button type="button" class="video-card-button" aria-haspopup="dialog" aria-controls="video-dialog-joggen">
+            <figure class="video-thumbnail">
+              <img src="assets/images/ThumbnailJoggen.jpg" alt="Vorschau des Videos über Joggen und Alltag">
+            </figure>
+            <h3>Kreatives Projekt</h3>
+            <p>Eine Alltagstätigkeit, filmisch erzählt mit Fokus auf Bildgestaltung, Schnitt und Stimmung.</p>
+          </button>
+        </article>
+
+        <article class="video-card">
+          <button type="button" class="video-card-button" aria-haspopup="dialog" aria-controls="video-dialog-thailand">
+            <figure class="video-thumbnail">
+              <img src="assets/images/ThailandThumbnail.jpg" alt="Vorschau des Videos Thailand 2025">
+            </figure>
+            <h3>Thailand 2025</h3>
+            <p>Ein Einblick in meine Reise nach Thailand.</p>
+          </button>
+        </article>
+
+        <article class="video-card">
+          <button type="button" class="video-card-button" aria-haspopup="dialog" aria-controls="video-dialog-demo">
+            <figure class="video-thumbnail">
+              <img src="https://img.youtube.com/vi/dQw4w9WgXcQ/hqdefault.jpg" alt="Vorschau des Demo-Videos von YouTube">
+            </figure>
+            <h3>Demo-Video</h3>
+            <p>Ein Beispielvideo zur Demonstration einer späteren YouTube-Einbindung.</p>
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- Videocontainer für die Wiedergabe -->
+    <dialog class="video-dialog" id="video-dialog-joggen" aria-labelledby="video-dialog-joggen-title">
+      <form method="dialog">
+        <button type="submit" aria-label="Video schließen">Schließen</button>
+      </form>
+
+      <a class="video-share-link" href="video.html#video-dialog-joggen" aria-label="Kreatives Projekt teilen oder verlinken">
+        Teilen
+      </a>
+
+      <div class="video-player">
+        <video controls src="assets/videos/VideoJoggen.mp4" poster="assets/images/ThumbnailJoggen.jpg">
+          Dein Browser unterstützt das Video-Element nicht.
+        </video>
+      </div>
+
+      <h2 id="video-dialog-joggen-title">Kreatives Projekt</h2>
+      <p>Eine Alltagstätigkeit, filmisch erzählt mit Fokus auf Bildgestaltung, Schnitt und Stimmung.</p>
+    </dialog>
+
+    <dialog class="video-dialog" id="video-dialog-thailand" aria-labelledby="video-dialog-thailand-title">
+      <form method="dialog">
+        <button type="submit" aria-label="Video schließen">Schließen</button>
+      </form>
+
+      <a class="video-share-link" href="video.html#video-dialog-thailand" aria-label="Thailand-Video teilen oder verlinken">
+        Teilen
+      </a>
+
+      <div class="video-player">
+        <div role="img" aria-label="Platzhalter für das Video Thailand 2025">Video folgt</div>
+      </div>
+
+      <h2 id="video-dialog-thailand-title">Thailand 2025</h2>
+      <p>Ein Einblick in meine Reise nach Thailand.</p>
+    </dialog>
+
+    <dialog class="video-dialog" id="video-dialog-demo" aria-labelledby="video-dialog-demo-title">
+      <form method="dialog">
+        <button type="submit" aria-label="Video schließen">Schließen</button>
+      </form>
+
+      <a class="video-share-link" href="https://youtu.be/dQw4w9WgXcQ?si=u8FymDVBBRJzrGu6" target="_blank" rel="noopener" aria-label="Demo-Video auf YouTube teilen oder öffnen">
+        Teilen
+      </a>
+
+      <div class="video-player">
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Demo-Video von YouTube"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <h2 id="video-dialog-demo-title">Demo-Video</h2>
+      <p>Ein Beispielvideo zur Demonstration einer späteren YouTube-Einbindung.</p>
+    </dialog>
   </main>
 
   <!-- Footer mit Links und Kontaktmöglichkeiten -->
