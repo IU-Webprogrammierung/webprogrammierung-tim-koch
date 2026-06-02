@@ -7,60 +7,11 @@
   <meta name="description" content="Über Tim Koch.">
   <link rel="preload" href="assets/fonts/Inter/Inter-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/main.js" defer></script>
 </head>
 
 <body>
-  <!-- Direktlink zum Hauptinhalt für Tastaturnutzer -->
-  <a class="skip-link" href="#main-content">Zum Inhalt springen</a>
-
-  <!-- Einstellungen für Barrierefreiheit und Darstellung -->
-  <details class="settings">
-    <summary>Einstellungen</summary>
-
-    <div class="container">
-      <div class="settings-group">
-        <h3>Schriftgröße</h3>
-        <button type="button" aria-label="Schriftgröße verkleinern">-</button>
-        <span>16px</span>
-        <button type="button" aria-label="Schriftgröße vergrößern">+</button>
-        <button type="button" aria-label="Schriftgröße zurücksetzen">Zurücksetzen</button>
-      </div>
-
-      <div class="settings-group">
-        <h3>Dunkler Modus</h3>
-        <button type="button" aria-pressed="false">Deaktiviert</button>
-      </div>
-
-      <div class="settings-group">
-        <h3>Hoher Kontrast</h3>
-        <button type="button" aria-pressed="false">Deaktiviert</button>
-      </div>
-
-      <div class="settings-group">
-        <h3>Animationen reduzieren</h3>
-        <button type="button" aria-pressed="false">Deaktiviert</button>
-      </div>
-    </div>
-  </details>
-
-  <!-- Hauptnavigation -->
-  <header class="site-header">
-    <nav class="main-nav" aria-label="Hauptnavigation">
-      <a class="logo" href="index.html">Tim Koch</a>
-
-      <button class="menu-toggle" type="button" aria-label="Navigation öffnen" aria-expanded="false" aria-controls="main-navigation">
-        Menü
-      </button>
-
-      <ul class="nav-list" id="main-navigation">
-        <li><a href="index.html">Startseite</a></li>
-        <li><a href="about.html" aria-current="page">Über mich</a></li>
-        <li><a href="video.html">Videografie</a></li>
-        <li><a href="projects.html">Projekte</a></li>
-        <li><a href="imprint.html">Impressum</a></li>
-      </ul>
-    </nav>
-  </header>
+  <div data-partial="partials/header.html"></div>
 
   <!-- Seiteninhalt -->
   <main id="main-content">
@@ -164,38 +115,6 @@
       </div>
     </section>
   </main>
-
-  <!-- Footer mit Links und Kontaktmöglichkeiten -->
-  <footer class="site-footer">
-    <div class="container">
-      <section class="footer-section" aria-labelledby="footer-portfolio">
-        <h2 id="footer-portfolio">Portfolio</h2>
-        <p>Medieninformatik &amp; Creative Development</p>
-      </section>
-
-      <nav class="footer-section" aria-labelledby="footer-links">
-        <h2 id="footer-links">Links</h2>
-        <ul>
-          <li><a href="index.html">Startseite</a></li>
-          <li><a href="about.html">Über mich</a></li>
-          <li><a href="video.html">Videografie</a></li>
-          <li><a href="projects.html">Projekte</a></li>
-          <li><a href="imprint.html">Impressum</a></li>
-        </ul>
-      </nav>
-
-      <section class="footer-section" aria-labelledby="footer-contact">
-        <h2 id="footer-contact">Kontakt</h2>
-        <ul>
-          <li><a href="https://github.com/tim-koch/" aria-label="GitHub-Profil">GitHub</a></li>
-          <li><a href="mailto:tim.koch1@iu-study.org" aria-label="E-Mail schreiben">E-Mail</a></li>
-        </ul>
-      </section>
-
-      <p class="footer-copyright">&copy; 2026 Tim Koch. Alle Rechte vorbehalten.</p>
-    </div>
-  </footer>
-
-  <script src="js/main.js"></script>
+  <div data-partial="partials/footer.html"></div>
 </body>
 </html>
