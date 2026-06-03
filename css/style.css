@@ -97,6 +97,25 @@ p {
   outline-offset: 4px;
 }
 
+.skip-link {
+  position: absolute;
+  top: var(--space-medium);
+  left: var(--space-medium);
+  z-index: 100;
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-medium);
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform var(--transition-base);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
 .container {
   width: min(100% - 2rem, var(--container-width));
   margin-inline: auto;
@@ -117,4 +136,15 @@ main > section {
 .button-primary {
   background: var(--color-primary);
   color: var(--color-primary-text);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }
