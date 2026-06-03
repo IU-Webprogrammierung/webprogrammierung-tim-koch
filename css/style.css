@@ -323,16 +323,80 @@ main > section {
 }
 
 .button {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
   padding: 0.65rem 1rem;
-  border-radius: 0.5rem;
+  border-radius: var(--radius-medium);
   text-decoration: none;
   font-weight: 600;
+  line-height: 1.2;
+  transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
 }
 
 .button-primary {
   background: var(--color-primary);
   color: var(--color-primary-text);
+}
+
+.button-secondary {
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+}
+
+.button-primary:hover,
+.project-link-demo:hover,
+.project-link-document:hover {
+  color: var(--color-primary-text);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.button-secondary:hover,
+.project-link-code:hover {
+  background: var(--color-border);
+  color: var(--color-text);
+}
+
+.project-links,
+.error-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-small);
+  align-items: center;
+}
+
+.project-link,
+.project-status {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: var(--radius-medium);
+  padding: 0.65rem 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.project-link {
+  transition: background var(--transition-base), color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
+}
+
+.project-link-demo,
+.project-link-document {
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+}
+
+.project-link-code,
+.project-status {
+  background: var(--color-surface-muted);
+  color: var(--color-text);
+}
+
+.project-status {
+  margin: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
