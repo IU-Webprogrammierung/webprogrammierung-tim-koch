@@ -121,6 +121,124 @@ p {
   margin-inline: auto;
 }
 
+.settings {
+  position: relative;
+  z-index: 40;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+.settings summary {
+  width: min(100% - 2rem, var(--container-width));
+  margin-inline: auto;
+  padding-block: 0.45rem;
+  cursor: pointer;
+  list-style: none;
+  text-align: right;
+  font-weight: 600;
+}
+
+.settings summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings summary::after {
+  content: "⚙";
+  display: inline-grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 999px;
+}
+
+.settings[open] summary::after {
+  background: var(--color-surface);
+}
+
+.settings .container {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-medium);
+  padding-block: var(--space-medium);
+}
+
+.settings-group h3 {
+  margin-bottom: var(--space-small);
+  font-size: var(--font-size-small);
+}
+
+.settings-group button {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-small);
+  padding: 0.35rem 0.6rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.settings-group span {
+  display: inline-block;
+  min-width: 3rem;
+  text-align: center;
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+
+.main-nav {
+  width: min(100% - 2rem, var(--container-width));
+  min-height: 4rem;
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-large);
+}
+
+.logo {
+  color: var(--color-text);
+  font-size: var(--font-size-large);
+  font-weight: 800;
+}
+
+.menu-toggle {
+  display: none;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-medium);
+  padding: 0.55rem 0.75rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: var(--space-large);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.nav-list a {
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+.nav-list a:hover,
+.nav-list a[aria-current="page"] {
+  color: var(--color-text);
+}
+
+.nav-list a[aria-current="page"] {
+  font-weight: 800;
+}
+
 main > section {
   padding-block: var(--space-section);
 }
