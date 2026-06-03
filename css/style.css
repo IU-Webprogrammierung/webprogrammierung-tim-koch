@@ -278,6 +278,51 @@ main > section {
   font-size: var(--font-size-large);
 }
 
+.teaser-section .container {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-large);
+}
+
+.teaser-section h2 {
+  grid-column: 1 / -1;
+  margin-bottom: var(--space-small);
+  text-align: center;
+  font-size: var(--font-size-h2);
+  line-height: 1.2;
+}
+
+.teaser-card {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  background: var(--color-surface);
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.teaser-card:hover {
+  border-color: var(--color-text-muted);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-3px);
+}
+
+.teaser-card-link {
+  display: block;
+  min-height: 100%;
+  padding: var(--space-large);
+}
+
+.teaser-card h3 {
+  margin-bottom: var(--space-small);
+  font-size: var(--font-size-h3);
+}
+
+.teaser-card span {
+  display: inline-block;
+  margin-top: var(--space-medium);
+  color: var(--color-text);
+  font-weight: 700;
+}
+
 /* Footer */
 .site-footer {
   margin-top: var(--space-section);
