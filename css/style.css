@@ -256,6 +256,28 @@ main > section {
   padding-block: var(--space-section);
 }
 
+/* Startseite */
+.hero {
+  display: grid;
+  min-height: 24rem;
+  align-items: center;
+  text-align: center;
+}
+
+.hero h1 {
+  margin-bottom: var(--space-medium);
+  font-size: var(--font-size-h1);
+  line-height: 1.05;
+  letter-spacing: 0;
+}
+
+.hero p {
+  max-width: 42rem;
+  margin-inline: auto;
+  margin-bottom: var(--space-large);
+  font-size: var(--font-size-large);
+}
+
 /* Footer */
 .site-footer {
   margin-top: var(--space-section);
