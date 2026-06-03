@@ -8,14 +8,37 @@
 
 :root {
   --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f7f7f9;
   --color-text: #111111;
   --color-text-muted: #717182;
   --color-surface-muted: #ececf0;
+  --color-border: #e9ebef;
   --color-primary: #030213;
   --color-primary-text: #ffffff;
   --color-focus: #4f46e5;
+
   --container-width: 1120px;
+  --content-width: 720px;
+  --radius-small: 0.35rem;
+  --radius-medium: 0.5rem;
+  --radius-large: 0.75rem;
+  --shadow-card: 0 1rem 2.5rem rgba(3, 2, 19, 0.08);
+  --shadow-hover: 0 1.5rem 3rem rgba(3, 2, 19, 0.14);
+
+  --font-size-small: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-large: 1.125rem;
+  --font-size-h1: clamp(2.5rem, 5vw, 4rem);
+  --font-size-h2: clamp(1.75rem, 3vw, 2.25rem);
+  --font-size-h3: 1.15rem;
+
+  --space-small: 0.5rem;
+  --space-medium: 1rem;
+  --space-large: 1.5rem;
+  --space-xl: 2.5rem;
   --space-section: 4rem;
+  --transition-base: 180ms ease;
 }
 
 * {
