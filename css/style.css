@@ -506,6 +506,111 @@ main > section {
   font-size: var(--font-size-large);
 }
 
+/* Videografie */
+.video-gallery .container {
+  width: min(100% - 2rem, 1440px);
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-large);
+  align-items: stretch;
+}
+
+.video-gallery h2 {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: var(--font-size-h2);
+}
+
+.video-card {
+  min-height: 100%;
+}
+
+.video-card-button {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  padding: 0;
+  background: var(--color-surface);
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+}
+
+.video-card-button:hover {
+  border-color: var(--color-text-muted);
+  box-shadow: var(--shadow-card);
+  transform: translateY(-3px);
+}
+
+.video-thumbnail {
+  position: relative;
+  width: 100%;
+  margin: 0;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  background: var(--color-surface-muted);
+}
+
+.video-thumbnail::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(3, 2, 19, 0.08), rgba(3, 2, 19, 0.68));
+  opacity: 0;
+  transition: opacity var(--transition-base);
+}
+
+.video-thumbnail::after {
+  content: "";
+  position: absolute;
+  inset: 50% auto auto 50%;
+  z-index: 2;
+  width: 4rem;
+  height: 4rem;
+  background-image: url("../assets/icons/play-button-hell.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 3rem 3rem;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity var(--transition-base), transform var(--transition-base);
+}
+
+.video-card-button:hover .video-thumbnail::before,
+.video-card-button:focus-visible .video-thumbnail::before {
+  opacity: 1;
+}
+
+.video-card-button:hover .video-thumbnail::after,
+.video-card-button:focus-visible .video-thumbnail::after {
+  opacity: 1;
+}
+
+.video-card-button:hover .video-thumbnail::after {
+  transform: translate(-50%, -50%) scale(1.06);
+}
+
+.video-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-card h3 {
+  margin: var(--space-large) var(--space-large) var(--space-small);
+  font-size: var(--font-size-h3);
+}
+
+.video-card p {
+  margin: 0 var(--space-large) var(--space-large);
+}
+
 /* Footer */
 .site-footer {
   margin-top: var(--space-section);
