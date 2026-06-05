@@ -694,13 +694,6 @@ main > section {
   background: rgba(3, 2, 19, 0.92);
 }
 
-.video-share-link {
-  position: absolute;
-  top: var(--space-medium);
-  left: var(--space-medium);
-  z-index: 3;
-}
-
 .video-dialog form button .icon,
 .video-share-link .icon {
   width: 1.65rem;
@@ -720,8 +713,16 @@ main > section {
   object-fit: contain;
 }
 
-.video-dialog h2 {
+.video-dialog-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-medium);
   margin: var(--space-large) var(--space-large) var(--space-small);
+}
+
+.video-dialog h2 {
+  margin: 0;
   font-size: var(--font-size-h2);
 }
 

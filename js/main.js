@@ -58,6 +58,53 @@ function initVideoDialogs() {
 
     button.addEventListener("click", () => {
       dialog.showModal();
+
+      requestAnimationFrame(() => {
+        dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {
+          iframe.src = iframe.dataset.src;
+        });
+      });
+    });
+
+    dialog.addEventListener("close", () => {
+      dialog.querySelectorAll("video").forEach((video) => {
+        video.pause();
+      });
+
+      dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {
+        iframe.removeAttribute("src");
+      });
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+      }
+    });
+  });
+}
+
+function initShareLinks() {
+  const shareLinks = document.querySelectorAll(".video-share-link");
+
+  shareLinks.forEach((link) => {
+    link.addEventListener("click", async (event) => {
+      const shareUrl = new URL(link.getAttribute("href"), window.location.href).href;
+      const shareTitle = link.closest(".video-dialog")?.querySelector("h2")?.textContent || document.title;
+
+      if (navigator.share) {
+        event.preventDefault();
+        await navigator.share({
+          title: shareTitle,
+          url: shareUrl,
+        });
+        return;
+      }
+
+      if (navigator.clipboard) {
+        event.preventDefault();
+        await navigator.clipboard.writeText(shareUrl);
+      }
     });
   });
 }
@@ -76,4 +123,5 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   initVideoDialogs();
+  initShareLinks();
 });
