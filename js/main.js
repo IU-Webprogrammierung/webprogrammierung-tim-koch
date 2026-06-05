@@ -44,6 +44,24 @@ function initMenuToggle() {
   });
 }
 
+// Videocontainer öffnen
+function initVideoDialogs() {
+  const videoButtons = document.querySelectorAll(".video-card-button[aria-controls]");
+
+  videoButtons.forEach((button) => {
+    const dialogId = button.getAttribute("aria-controls");
+    const dialog = document.getElementById(dialogId);
+
+    if (!dialog || typeof dialog.showModal !== "function") {
+      return;
+    }
+
+    button.addEventListener("click", () => {
+      dialog.showModal();
+    });
+  });
+}
+
 async function initLayoutPartials() {
   const partialContainers = document.querySelectorAll("[data-partial]");
 
@@ -56,4 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initLayoutPartials().catch((error) => {
     console.error(error);
   });
+
+  initVideoDialogs();
 });
