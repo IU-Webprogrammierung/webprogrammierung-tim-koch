@@ -41,6 +41,14 @@
   --space-xl: 2.5rem;
   --space-section: 4rem;
   --transition-base: 180ms ease;
+
+  --icon-close-light: url("../assets/icons/close-circle-hell.svg");
+  --icon-email: url("../assets/icons/E-Mail.svg");
+  --icon-github: url("../assets/icons/GitHub.svg");
+  --icon-google-play: url("../assets/icons/Google-G-Logo.svg");
+  --icon-play-light: url("../assets/icons/play-button-hell.svg");
+  --icon-settings: url("../assets/icons/set-up.svg");
+  --icon-share-light: url("../assets/icons/square-share-hell.svg");
 }
 
 /* Grundlagen */
@@ -75,6 +83,40 @@ iframe {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+.icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.icon-close-light {
+  background-image: var(--icon-close-light);
+}
+
+.icon-email {
+  background-image: var(--icon-email);
+}
+
+.icon-github {
+  background-image: var(--icon-github);
+}
+
+.icon-google-play {
+  background-image: var(--icon-google-play);
+}
+
+.icon-settings {
+  background-image: var(--icon-settings);
+}
+
+.icon-share-light {
+  background-image: var(--icon-share-light);
 }
 
 button,
@@ -146,7 +188,7 @@ p {
   display: none;
 }
 
-.settings summary img {
+.settings summary .icon {
   display: inline-block;
   width: 2rem;
   height: 2rem;
@@ -154,7 +196,7 @@ p {
   border-radius: 50%;
 }
 
-.settings[open] summary img {
+.settings[open] summary .icon {
   background: var(--color-surface);
 }
 
@@ -573,7 +615,7 @@ main > section {
   z-index: 2;
   width: 4rem;
   height: 4rem;
-  background-image: url("../assets/icons/play-button-hell.svg");
+  background-image: var(--icon-play-light);
   background-position: center;
   background-repeat: no-repeat;
   background-size: 3rem 3rem;
@@ -608,6 +650,82 @@ main > section {
 }
 
 .video-card p {
+  margin: 0 var(--space-large) var(--space-large);
+}
+
+.video-dialog {
+  width: min(100% - 2rem, 920px);
+  max-height: calc(100vh - 2rem);
+  overflow: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-large);
+  padding: 0;
+  background: var(--color-surface);
+  box-shadow: var(--shadow-hover);
+}
+
+.video-dialog::backdrop {
+  background: rgba(3, 2, 19, 0.76);
+}
+
+.video-dialog form {
+  position: absolute;
+  top: var(--space-medium);
+  right: var(--space-medium);
+  z-index: 3;
+  margin: 0;
+}
+
+.video-dialog form button,
+.video-share-link {
+  display: inline-grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border: 0;
+  border-radius: 50%;
+  padding: 0;
+  background: rgba(3, 2, 19, 0.72);
+  line-height: 1;
+}
+
+.video-dialog form button:hover,
+.video-share-link:hover {
+  background: rgba(3, 2, 19, 0.92);
+}
+
+.video-share-link {
+  position: absolute;
+  top: var(--space-medium);
+  left: var(--space-medium);
+  z-index: 3;
+}
+
+.video-dialog form button .icon,
+.video-share-link .icon {
+  width: 1.65rem;
+  height: 1.65rem;
+}
+
+.video-player {
+  aspect-ratio: 16 / 9;
+  background: var(--color-primary);
+}
+
+.video-player video,
+.video-player iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  object-fit: contain;
+}
+
+.video-dialog h2 {
+  margin: var(--space-large) var(--space-large) var(--space-small);
+  font-size: var(--font-size-h2);
+}
+
+.video-dialog p {
   margin: 0 var(--space-large) var(--space-large);
 }
 
@@ -666,10 +784,9 @@ main > section {
   background: var(--color-surface);
 }
 
-.footer-icon-link img {
+.footer-icon-link .icon {
   width: 1.25rem;
   height: 1.25rem;
-  object-fit: contain;
 }
 
 .footer-icon-link:hover {
@@ -677,7 +794,7 @@ main > section {
   color: var(--color-primary-text);
 }
 
-.footer-icon-link:hover img {
+.footer-icon-link:hover .icon {
   filter: brightness(0) invert(1);
 }
 
@@ -785,14 +902,13 @@ main > section {
   margin: 0;
 }
 
-.project-link img,
-.project-status img {
+.project-link .icon,
+.project-status .icon {
   width: 1rem;
   height: 1rem;
-  object-fit: contain;
 }
 
-.project-link:hover img {
+.project-link:hover .icon {
   filter: brightness(0) invert(1);
 }
 
