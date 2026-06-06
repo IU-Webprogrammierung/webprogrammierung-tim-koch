@@ -109,6 +109,20 @@ function initShareLinks() {
   });
 }
 
+function initBackButtons() {
+  const backButtons = document.querySelectorAll(".back-button");
+
+  backButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = "index.html";
+      }
+    });
+  });
+}
+
 async function initLayoutPartials() {
   const partialContainers = document.querySelectorAll("[data-partial]");
 
@@ -124,4 +138,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initVideoDialogs();
   initShareLinks();
+  initBackButtons();
 });

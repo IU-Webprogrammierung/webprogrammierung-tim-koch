@@ -930,6 +930,64 @@ main > section {
   font-size: var(--font-size-small);
 }
 
+/* Fehlerseite */
+.error-page .container {
+  max-width: 920px;
+  text-align: center;
+}
+
+.error-illustration {
+  max-width: 36rem;
+  margin: 0 auto var(--space-large);
+}
+
+.error-illustration img {
+  width: 100%;
+  height: auto;
+}
+
+.error-page h1 {
+  margin-bottom: var(--space-small);
+  font-size: var(--font-size-h1);
+  line-height: 1.1;
+}
+
+.error-page > .container > p {
+  max-width: 42rem;
+  margin-inline: auto;
+  margin-bottom: var(--space-large);
+  font-size: var(--font-size-large);
+}
+
+.error-actions {
+  justify-content: center;
+  margin-bottom: var(--space-xl);
+}
+
+.error-links p {
+  margin-bottom: var(--space-small);
+  font-size: var(--font-size-small);
+}
+
+.error-links ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-small) var(--space-medium);
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.error-links a {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.error-links a:hover {
+  color: var(--color-text-muted);
+}
+
 /* Footer */
 .site-footer {
   margin-top: var(--space-section);
