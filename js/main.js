@@ -131,12 +131,10 @@ async function initLayoutPartials() {
   initMenuToggle();
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  initLayoutPartials().catch((error) => {
-    console.error(error);
-  });
-
-  initVideoDialogs();
-  initShareLinks();
-  initBackButtons();
+initLayoutPartials().catch((error) => {
+  console.error(error);
 });
+
+initVideoDialogs();
+initShareLinks();
+initBackButtons();
