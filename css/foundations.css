@@ -1,0 +1,179 @@
+/* Schrift */
+@font-face {
+  font-family: "Inter";
+  src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.woff2") format("woff2");
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Design Tokens */
+:root {
+  --color-background: #ffffff;
+  --color-surface: #ffffff;
+  --color-surface-soft: #f7f7f9;
+  --color-text: #111111;
+  --color-text-muted: #717182;
+  --color-surface-muted: #ececf0;
+  --color-border: #e9ebef;
+  --color-primary: #030213;
+  --color-primary-text: #ffffff;
+  --color-focus: #4f46e5;
+
+  --container-width: 1120px;
+  --content-width: 720px;
+  --radius-small: 0.35rem;
+  --radius-medium: 0.5rem;
+  --radius-large: 0.75rem;
+  --shadow-card: 0 1rem 2.5rem rgba(3, 2, 19, 0.08);
+  --shadow-hover: 0 1.5rem 3rem rgba(3, 2, 19, 0.14);
+
+  --font-size-small: 0.875rem;
+  --font-size-base: 1rem;
+  --font-size-large: 1.125rem;
+  --font-size-h1: clamp(2.5rem, 5vw, 4rem);
+  --font-size-h2: clamp(1.75rem, 3vw, 2.25rem);
+  --font-size-h3: 1.15rem;
+
+  --space-small: 0.5rem;
+  --space-medium: 1rem;
+  --space-large: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-section: 4rem;
+  --transition-base: 180ms ease;
+
+  --icon-case-round: url("../assets/icons/case-round.svg");
+  --icon-close-light: url("../assets/icons/close-circle-hell.svg");
+  --icon-email: url("../assets/icons/E-Mail.svg");
+  --icon-github: url("../assets/icons/GitHub.svg");
+  --icon-google-play: url("../assets/icons/Google-G-Logo.svg");
+  --icon-play-light: url("../assets/icons/play-button-hell.svg");
+  --icon-settings: url("../assets/icons/set-up.svg");
+  --icon-share-light: url("../assets/icons/square-share-hell.svg");
+  --icon-square-academic: url("../assets/icons/square-academic.svg");
+}
+
+/* Grundlagen */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color: var(--color-text);
+  background: var(--color-background);
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  color: var(--color-text);
+  background: var(--color-background);
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+
+img,
+video,
+iframe {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.icon {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  flex: 0 0 auto;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+.icon-close-light {
+  background-image: var(--icon-close-light);
+}
+
+.icon-case-round {
+  background-image: var(--icon-case-round);
+}
+
+.icon-email {
+  background-image: var(--icon-email);
+}
+
+.icon-github {
+  background-image: var(--icon-github);
+}
+
+.icon-google-play {
+  background-image: var(--icon-google-play);
+}
+
+.icon-settings {
+  background-image: var(--icon-settings);
+}
+
+.icon-share-light {
+  background-image: var(--icon-share-light);
+}
+
+.icon-square-academic {
+  background-image: var(--icon-square-academic);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+/* Barrierefreiheit */
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 4px;
+}
+
+.skip-link {
+  position: absolute;
+  top: var(--space-medium);
+  left: var(--space-medium);
+  z-index: 100;
+  display: inline-block;
+  padding: 0.75rem 1rem;
+  border-radius: var(--radius-medium);
+  background: var(--color-primary);
+  color: var(--color-primary-text);
+  font-weight: 700;
+  transform: translateY(-160%);
+  transition: transform var(--transition-base);
+}
+
+.skip-link:focus {
+  transform: translateY(0);
+}
+
+.container {
+  width: min(100% - 2rem, var(--container-width));
+  margin-inline: auto;
+}
+
