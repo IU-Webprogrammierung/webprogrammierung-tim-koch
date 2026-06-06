@@ -227,9 +227,11 @@ p {
   padding-block: var(--space-medium);
 }
 
-.settings-group h3 {
+.settings-title {
   margin-bottom: var(--space-small);
+  color: var(--color-text);
   font-size: var(--font-size-small);
+  font-weight: 700;
 }
 
 .settings-group button {
