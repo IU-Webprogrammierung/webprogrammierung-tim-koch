@@ -886,6 +886,50 @@ main > section {
   color: var(--color-text-muted);
 }
 
+/* Impressum */
+.imprint-content .container {
+  max-width: var(--content-width);
+}
+
+.imprint-content h1 {
+  margin-bottom: var(--space-xl);
+  font-size: var(--font-size-h1);
+  line-height: 1.1;
+}
+
+.imprint-content section {
+  margin-bottom: var(--space-xl);
+}
+
+.imprint-content h2 {
+  margin-bottom: var(--space-medium);
+  font-size: var(--font-size-h2);
+}
+
+.imprint-content h3 {
+  margin-bottom: var(--space-small);
+  font-size: var(--font-size-h3);
+}
+
+.imprint-content address {
+  color: var(--color-text-muted);
+  font-style: normal;
+}
+
+.imprint-content a {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+.imprint-content a:hover {
+  color: var(--color-text-muted);
+}
+
+.imprint-content > .container > p:last-child {
+  margin-bottom: 0;
+  font-size: var(--font-size-small);
+}
+
 /* Footer */
 .site-footer {
   margin-top: var(--space-section);
