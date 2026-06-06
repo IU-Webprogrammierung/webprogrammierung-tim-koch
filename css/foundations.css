@@ -53,11 +53,12 @@
   --icon-square-academic: url("../assets/icons/square-academic.svg");
 }
 
-/* Grundlagen */
+/* Reset */
 * {
   box-sizing: border-box;
 }
 
+/* Seitenbasis */
 html {
   font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   color: var(--color-text);
@@ -74,6 +75,7 @@ body {
   min-height: 100vh;
 }
 
+/* Medien */
 img,
 video,
 iframe {
@@ -82,11 +84,46 @@ iframe {
   height: auto;
 }
 
+/* Links und Formulare */
 a {
   color: inherit;
   text-decoration: none;
 }
 
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+/* Typografie */
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1 {
+  font-size: var(--font-size-h1);
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+h2 {
+  font-size: var(--font-size-h2);
+}
+
+h3 {
+  font-size: var(--font-size-h3);
+}
+
+p {
+  color: var(--color-text-muted);
+}
+
+/* Icons */
 .icon {
   display: inline-block;
   width: 1rem;
@@ -129,24 +166,6 @@ a {
   background-image: var(--icon-square-academic);
 }
 
-button,
-input,
-textarea,
-select {
-  font: inherit;
-}
-
-h1,
-h2,
-h3,
-p {
-  margin-top: 0;
-}
-
-p {
-  color: var(--color-text-muted);
-}
-
 /* Barrierefreiheit */
 :focus-visible {
   outline: 3px solid var(--color-focus);
@@ -172,8 +191,8 @@ p {
   transform: translateY(0);
 }
 
+/* Hilfsklassen */
 .container {
   width: min(100% - 2rem, var(--container-width));
   margin-inline: auto;
 }
-
