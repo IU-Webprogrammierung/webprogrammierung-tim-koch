@@ -32,7 +32,6 @@
 
   .container {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: var(--space-medium);
     padding-block: var(--space-medium);
   }
@@ -85,9 +84,10 @@
   min-height: 4rem;
   margin-inline: auto;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  gap: var(--space-large);
+  gap: var(--space-medium);
 }
 
 .logo {
@@ -108,8 +108,9 @@
 
 .nav-list {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: var(--space-large);
+  gap: var(--space-small) var(--space-medium);
   margin: 0;
   padding: 0;
   list-style: none;
@@ -130,7 +131,7 @@
 }
 
 main > section {
-  padding-block: var(--space-section);
+  padding-block: var(--space-xl);
 }
 
 
@@ -142,7 +143,6 @@ main > section {
 
   .container {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: var(--space-xl);
   }
 
@@ -211,4 +211,3 @@ main > section {
   text-align: center;
   font-size: var(--font-size-small);
 }
-

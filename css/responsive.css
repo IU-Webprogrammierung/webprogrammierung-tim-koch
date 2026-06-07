@@ -1,3 +1,80 @@
+/* Tablet */
+@media (min-width: 768px) {
+  main > section {
+    padding-block: var(--space-section);
+  }
+
+  .settings {
+    .container {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .teaser-section,
+  .featured-work,
+  .projects-gallery,
+  .video-gallery {
+    .container {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  .about-hero {
+    .container {
+      grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.1fr);
+    }
+  }
+
+  .cta-section,
+  .interests-section {
+    .container {
+      padding: var(--space-xl);
+    }
+  }
+
+  .site-footer {
+    .container {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .settings {
+    .container {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .main-nav {
+    gap: var(--space-large);
+  }
+
+  .nav-list {
+    gap: var(--space-large);
+  }
+
+  .hero {
+    min-height: 24rem;
+  }
+
+  .teaser-section,
+  .featured-work,
+  .projects-gallery,
+  .video-gallery {
+    .container {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .site-footer {
+    .container {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
