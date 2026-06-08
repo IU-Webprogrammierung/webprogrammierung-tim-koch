@@ -37,10 +37,21 @@ function initMenuToggle() {
     return;
   }
 
+  const setMenuState = (isOpen) => {
+    menuToggle.setAttribute("aria-expanded", String(isOpen));
+    menuToggle.setAttribute("aria-label", isOpen ? "Navigation schließen" : "Navigation öffnen");
+    navigation.classList.toggle("is-open", isOpen);
+  };
+
   menuToggle.addEventListener("click", () => {
     const isExpanded = menuToggle.getAttribute("aria-expanded") === "true";
-    menuToggle.setAttribute("aria-expanded", String(!isExpanded));
-    navigation.classList.toggle("is-open", !isExpanded);
+    setMenuState(!isExpanded);
+  });
+
+  navigation.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", () => {
+      setMenuState(false);
+    });
   });
 }
 

@@ -10,6 +10,37 @@
     }
   }
 
+  .menu-toggle {
+    display: none;
+  }
+
+  .main-nav {
+    grid-template-columns: auto 1fr;
+    grid-template-rows: 4rem;
+  }
+
+  .nav-list {
+    grid-column: auto;
+    width: auto;
+    height: auto;
+    justify-content: end;
+    flex-direction: row;
+    flex-wrap: wrap;
+    max-height: none;
+    overflow: visible;
+    opacity: 1;
+    visibility: visible;
+
+    &.is-open {
+      padding-bottom: 0;
+    }
+
+    a {
+      min-height: auto;
+      padding-block: 0;
+    }
+  }
+
   .teaser-section,
   .featured-work,
   .projects-gallery,

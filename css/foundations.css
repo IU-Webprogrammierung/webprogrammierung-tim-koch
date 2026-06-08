@@ -43,6 +43,7 @@
   --transition-base: 180ms ease;
 
   --icon-case-round: url("../assets/icons/case-round.svg");
+  --icon-burger-menu: url("../assets/icons/burger-menu.svg");
   --icon-close-light: url("../assets/icons/close-circle-hell.svg");
   --icon-email: url("../assets/icons/E-Mail.svg");
   --icon-github: url("../assets/icons/GitHub.svg");
@@ -140,6 +141,10 @@ p {
 
 .icon-case-round {
   background-image: var(--icon-case-round);
+}
+
+.icon-burger-menu {
+  background-image: var(--icon-burger-menu);
 }
 
 .icon-email {
