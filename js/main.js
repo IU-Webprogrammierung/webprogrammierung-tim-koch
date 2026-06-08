@@ -1,3 +1,107 @@
+const defaultSettings = {
+  fontSize: 16,
+  theme: "light",
+  contrast: "normal",
+  motion: "full",
+};
+
+const settingsStorageKey = "portfolio-settings";
+
+function loadSettings() {
+  try {
+    return {
+      ...defaultSettings,
+      ...JSON.parse(localStorage.getItem(settingsStorageKey)),
+    };
+  } catch {
+    return { ...defaultSettings };
+  }
+}
+
+function saveSettings(settings) {
+  try {
+    localStorage.setItem(settingsStorageKey, JSON.stringify(settings));
+  } catch {
+    // Einstellungen bleiben auch ohne lokalen Speicher für die aktuelle Sitzung aktiv.
+  }
+}
+
+function applySettings(settings) {
+  document.documentElement.style.fontSize = `${settings.fontSize}px`;
+  document.body.dataset.theme = settings.theme;
+  document.body.dataset.contrast = settings.contrast;
+  document.body.dataset.motion = settings.motion;
+}
+
+function updateSettingsControls(settings) {
+  const fontSizeValue = document.querySelector('[data-setting="font-size-value"]');
+  const themeButton = document.querySelector('[data-setting="theme"]');
+  const contrastButton = document.querySelector('[data-setting="contrast"]');
+  const motionButton = document.querySelector('[data-setting="motion"]');
+
+  if (fontSizeValue) {
+    fontSizeValue.textContent = `${settings.fontSize}px`;
+  }
+
+  [
+    [themeButton, settings.theme === "dark"],
+    [contrastButton, settings.contrast === "high"],
+    [motionButton, settings.motion === "reduced"],
+  ].forEach(([button, isActive]) => {
+    if (!button) {
+      return;
+    }
+
+    button.setAttribute("aria-pressed", String(isActive));
+    button.textContent = isActive ? "Aktiviert" : "Deaktiviert";
+  });
+}
+
+function initSettingsControls() {
+  const settings = loadSettings();
+  const fontDecrease = document.querySelector('[data-setting="font-decrease"]');
+  const fontIncrease = document.querySelector('[data-setting="font-increase"]');
+  const fontReset = document.querySelector('[data-setting="font-reset"]');
+  const themeButton = document.querySelector('[data-setting="theme"]');
+  const contrastButton = document.querySelector('[data-setting="contrast"]');
+  const motionButton = document.querySelector('[data-setting="motion"]');
+
+  const updateSettings = (changes) => {
+    Object.assign(settings, changes);
+    applySettings(settings);
+    updateSettingsControls(settings);
+    saveSettings(settings);
+  };
+
+  fontDecrease?.addEventListener("click", () => {
+    updateSettings({ fontSize: Math.max(14, settings.fontSize - 1) });
+  });
+
+  fontIncrease?.addEventListener("click", () => {
+    updateSettings({ fontSize: Math.min(20, settings.fontSize + 1) });
+  });
+
+  fontReset?.addEventListener("click", () => {
+    updateSettings({ fontSize: defaultSettings.fontSize });
+  });
+
+  themeButton?.addEventListener("click", () => {
+    updateSettings({ theme: settings.theme === "dark" ? "light" : "dark" });
+  });
+
+  contrastButton?.addEventListener("click", () => {
+    updateSettings({ contrast: settings.contrast === "high" ? "normal" : "high" });
+  });
+
+  motionButton?.addEventListener("click", () => {
+    updateSettings({ motion: settings.motion === "reduced" ? "full" : "reduced" });
+  });
+
+  updateSettingsControls(settings);
+}
+
+applySettings(loadSettings());
+
 async function loadPartial(container) {
   const file = container.dataset.partial;
 
@@ -139,6 +243,7 @@ async function initLayoutPartials() {
 
   await Promise.all(Array.from(partialContainers, loadPartial));
   markCurrentNavigationLink();
+  initSettingsControls();
   initMenuToggle();
 }
 

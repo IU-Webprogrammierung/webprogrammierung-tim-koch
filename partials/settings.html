@@ -8,25 +8,25 @@
   <div class="container">
     <div class="settings-group">
       <p class="settings-title">Schriftgröße</p>
-      <button type="button" aria-label="Schriftgröße verkleinern">-</button>
-      <span>16px</span>
-      <button type="button" aria-label="Schriftgröße vergrößern">+</button>
-      <button type="button" aria-label="Schriftgröße zurücksetzen">Zurücksetzen</button>
+      <button type="button" data-setting="font-decrease" aria-label="Schriftgröße verkleinern">-</button>
+      <span data-setting="font-size-value">16px</span>
+      <button type="button" data-setting="font-increase" aria-label="Schriftgröße vergrößern">+</button>
+      <button type="button" data-setting="font-reset" aria-label="Schriftgröße zurücksetzen">Zurücksetzen</button>
     </div>
 
     <div class="settings-group">
       <p class="settings-title">Dunkler Modus</p>
-      <button type="button" aria-pressed="false">Deaktiviert</button>
+      <button type="button" data-setting="theme" aria-pressed="false">Deaktiviert</button>
     </div>
 
     <div class="settings-group">
       <p class="settings-title">Hoher Kontrast</p>
-      <button type="button" aria-pressed="false">Deaktiviert</button>
+      <button type="button" data-setting="contrast" aria-pressed="false">Deaktiviert</button>
     </div>
 
     <div class="settings-group">
       <p class="settings-title">Animationen reduzieren</p>
-      <button type="button" aria-pressed="false">Deaktiviert</button>
+      <button type="button" data-setting="motion" aria-pressed="false">Deaktiviert</button>
     </div>
   </div>
 </details>
