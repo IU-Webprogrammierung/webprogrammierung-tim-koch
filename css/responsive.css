@@ -50,10 +50,38 @@
     }
   }
 
+  .project-content {
+    padding: var(--space-large) var(--space-large) calc(var(--space-large) + 3.75rem);
+  }
+
+  .project-links {
+    position: absolute;
+    right: var(--space-large);
+    bottom: var(--space-large);
+    left: var(--space-large);
+    margin-top: 0;
+  }
+
   .about-hero {
     .container {
       grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.1fr);
     }
+  }
+
+  .timeline-list {
+    > li {
+      padding-left: 3.5rem;
+
+      &:not(:last-child)::before {
+        left: 1.15rem;
+      }
+    }
+  }
+
+  .timeline-icon {
+    left: -3.5rem;
+    width: 2.3rem;
+    height: 2.3rem;
   }
 
   .cta-section,

@@ -42,10 +42,7 @@
 }
 
 .project-links {
-  position: absolute;
-  right: var(--space-large);
-  bottom: var(--space-large);
-  left: var(--space-large);
+  margin-top: auto;
   min-height: 2.75rem;
   align-items: center;
 }
