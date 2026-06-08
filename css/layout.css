@@ -76,10 +76,13 @@
   }
 }
 
-.site-header {
+[data-partial="partials/header.html"] {
   position: sticky;
   top: 0;
   z-index: 30;
+}
+
+.site-header {
   border-bottom: 1px solid var(--color-border);
   background: var(--color-surface);
 }
