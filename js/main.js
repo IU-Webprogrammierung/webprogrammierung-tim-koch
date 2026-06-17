@@ -259,13 +259,12 @@ function createCertificateDialog(certificate) {
   const content = createElement("div", { class: "certificate-dialog-content" });
   const title = createElement("h2", { id: `certificate-dialog-${certificate.id}-title` }, certificate.shortTitle || certificate.title);
   const description = createElement("p", {}, certificate.description);
-  const pdf = createElement("object", {
-    class: "certificate-pdf",
-    data: certificate.pdf,
-    type: "application/pdf",
-    "aria-label": certificate.pdfLabel,
+  const preview = createElement("figure", { class: "certificate-preview" });
+  const previewImage = createElement("img", {
+    src: certificate.preview || certificate.badge,
+    alt: certificate.previewAlt || `Vorschau des Zertifikats ${certificate.title}`,
+    loading: "lazy",
   });
-  const fallback = createElement("p", {}, "Die PDF-Vorschau kann in diesem Browser nicht angezeigt werden.");
   const actions = createElement("div", { class: "certificate-dialog-actions" });
   const pdfLink = createElement("a", {
     class: "button button-primary",
@@ -276,7 +275,7 @@ function createCertificateDialog(certificate) {
 
   closeButton.append(closeIcon);
   form.append(closeButton);
-  pdf.append(fallback);
+  preview.append(previewImage);
   actions.append(pdfLink);
 
   if (certificate.externalUrl) {
@@ -288,7 +287,7 @@ function createCertificateDialog(certificate) {
     }, certificate.externalLabel));
   }
 
-  content.append(title, description, pdf, actions);
+  content.append(title, description, preview, actions);
   dialog.append(form, content);
   return dialog;
 }

@@ -623,18 +623,22 @@
     max-width: 42rem;
   }
 
-  .certificate-pdf {
-    width: 100%;
-    height: min(70vh, 42rem);
-    min-height: 28rem;
+  .certificate-preview {
+    display: grid;
+    place-items: center;
+    margin: 0;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-medium);
+    padding: var(--space-medium);
     background: var(--color-surface-muted);
 
-    p {
-      padding: var(--space-large);
+    img {
+      width: 100%;
+      max-height: min(70vh, 42rem);
+      object-fit: contain;
     }
   }
+
 }
 
 .certificate-dialog-actions {

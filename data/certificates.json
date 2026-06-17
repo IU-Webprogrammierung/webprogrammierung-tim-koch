@@ -6,6 +6,8 @@
     "description": "Teilnahmebescheinigung der IHK zur Weiterbildung Automatisierung mit KI.",
     "badge": "assets/badges/automatisierung-mit-ki.webp",
     "badgeAlt": "IHK-Badge Automatisierung mit KI",
+    "preview": "assets/certificates/IHK-automatisierung_mit_ki-preview.webp",
+    "previewAlt": "Vorschau der IHK-Teilnahmebescheinigung Automatisierung mit KI",
     "pdf": "assets/certificates/IHK-automatisierung_mit_ki.pdf",
     "pdfLabel": "IHK-Teilnahmebescheinigung Automatisierung mit KI",
     "externalLabel": "IHK-Nachweis öffnen",
@@ -19,6 +21,8 @@
     "description": "Udemy-Kurs: Der ultimative HTML5 und CSS3 Komplettkurs.",
     "badge": "assets/badges/udemy-badge.webp",
     "badgeAlt": "Udemy-Badge Der ultimative HTML5 und CSS3 Komplettkurs",
+    "preview": "assets/certificates/udemy-html_css-preview.webp",
+    "previewAlt": "Vorschau des Udemy-Zertifikats HTML und CSS",
     "pdf": "assets/certificates/udemy-html_css.pdf",
     "pdfLabel": "Udemy-Zertifikat HTML und CSS"
   },
@@ -30,6 +34,8 @@
     "description": "Udemy-Kurs: Microsoft Office 365 Einsteigerkurs für IT-Administratoren.",
     "badge": "assets/badges/udemy-badge.webp",
     "badgeAlt": "Udemy-Badge Microsoft Office 365 Einsteigerkurs für IT-Administratoren",
+    "preview": "assets/certificates/udemy-ms_office_admin-preview.webp",
+    "previewAlt": "Vorschau des Udemy-Zertifikats Microsoft Office 365",
     "pdf": "assets/certificates/udemy-ms_office_admin.pdf",
     "pdfLabel": "Udemy-Zertifikat Microsoft Office 365 Einsteigerkurs für IT-Administratoren"
   },
@@ -41,6 +47,8 @@
     "description": "Masterplan-Zertifikat: KI-Führerschein - Kompetenz für die Arbeitswelt von morgen.",
     "badge": "assets/badges/masterplan-badge.webp",
     "badgeAlt": "Masterplan-Badge KI-Führerschein",
+    "preview": "assets/certificates/masterplan-ki_fuehrerschein-preview.webp",
+    "previewAlt": "Vorschau des Masterplan-Zertifikats KI-Führerschein",
     "pdf": "assets/certificates/masterplan-ki_fuehrerschein.pdf",
     "pdfLabel": "Masterplan-Zertifikat KI-Führerschein"
   }
