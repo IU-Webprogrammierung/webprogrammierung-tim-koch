@@ -1,0 +1,47 @@
+[
+  {
+    "id": "ihk-automatisierung-ki",
+    "provider": "IHK",
+    "title": "Automatisierung mit KI",
+    "description": "Teilnahmebescheinigung der IHK zur Weiterbildung Automatisierung mit KI.",
+    "badge": "assets/badges/automatisierung-mit-ki.webp",
+    "badgeAlt": "IHK-Badge Automatisierung mit KI",
+    "pdf": "assets/certificates/IHK-automatisierung_mit_ki.pdf",
+    "pdfLabel": "IHK-Teilnahmebescheinigung Automatisierung mit KI",
+    "externalLabel": "IHK-Nachweis öffnen",
+    "externalUrl": "https://badges-api.ihk-kompetenz.plus/public/assertions/46a2ee91-9535-4234-b2bd-861eb4c4491e?id=U2FsdGVkX1+C3qXrxaO8uagyhONn93z5oAupg4Y7RvDw+2UuYfNFfmvtDcC0BUUA"
+  },
+  {
+    "id": "udemy-html-css",
+    "provider": "Udemy",
+    "title": "Der ultimative HTML5 und CSS3 Komplettkurs",
+    "shortTitle": "HTML & CSS",
+    "description": "Udemy-Kurs: Der ultimative HTML5 und CSS3 Komplettkurs.",
+    "badge": "assets/badges/udemy-badge.webp",
+    "badgeAlt": "Udemy-Badge Der ultimative HTML5 und CSS3 Komplettkurs",
+    "pdf": "assets/certificates/udemy-html_css.pdf",
+    "pdfLabel": "Udemy-Zertifikat HTML und CSS"
+  },
+  {
+    "id": "udemy-microsoft-365-admin",
+    "provider": "Udemy",
+    "title": "Microsoft Office 365 Einsteigerkurs für IT-Administratoren",
+    "shortTitle": "Microsoft 365 Admin",
+    "description": "Udemy-Kurs: Microsoft Office 365 Einsteigerkurs für IT-Administratoren.",
+    "badge": "assets/badges/udemy-badge.webp",
+    "badgeAlt": "Udemy-Badge Microsoft Office 365 Einsteigerkurs für IT-Administratoren",
+    "pdf": "assets/certificates/udemy-ms_office_admin.pdf",
+    "pdfLabel": "Udemy-Zertifikat Microsoft Office 365 Einsteigerkurs für IT-Administratoren"
+  },
+  {
+    "id": "masterplan-ki-fuehrerschein",
+    "provider": "Masterplan",
+    "title": "KI-Führerschein - Kompetenz für die Arbeitswelt von morgen",
+    "shortTitle": "KI-Führerschein",
+    "description": "Masterplan-Zertifikat: KI-Führerschein - Kompetenz für die Arbeitswelt von morgen.",
+    "badge": "assets/badges/masterplan-badge.webp",
+    "badgeAlt": "Masterplan-Badge KI-Führerschein",
+    "pdf": "assets/certificates/masterplan-ki_fuehrerschein.pdf",
+    "pdfLabel": "Masterplan-Zertifikat KI-Führerschein"
+  }
+]

@@ -199,6 +199,157 @@ function initVideoDialogs() {
   });
 }
 
+function createElement(tagName, attributes = {}, textContent = "") {
+  const element = document.createElement(tagName);
+
+  Object.entries(attributes).forEach(([name, value]) => {
+    if (value === undefined || value === null || value === "") {
+      return;
+    }
+
+    element.setAttribute(name, value);
+  });
+
+  if (textContent) {
+    element.textContent = textContent;
+  }
+
+  return element;
+}
+
+function createCertificateCard(certificate) {
+  const item = createElement("li");
+  const button = createElement("button", {
+    class: "certificate-badge-link",
+    type: "button",
+    "aria-haspopup": "dialog",
+    "aria-controls": `certificate-dialog-${certificate.id}`,
+    "aria-label": `${certificate.provider}-Zertifikat ${certificate.title} anzeigen`,
+  });
+  const badge = createElement("img", {
+    src: certificate.badge,
+    alt: certificate.badgeAlt,
+  });
+
+  button.append(badge);
+
+  if (certificate.shortTitle) {
+    button.append(createElement("span", { class: "certificate-title" }, certificate.shortTitle));
+  }
+
+  item.append(button);
+  return item;
+}
+
+function createCertificateDialog(certificate) {
+  const dialog = createElement("dialog", {
+    class: "certificate-dialog",
+    id: `certificate-dialog-${certificate.id}`,
+    "aria-labelledby": `certificate-dialog-${certificate.id}-title`,
+  });
+  const form = createElement("form", { method: "dialog" });
+  const closeButton = createElement("button", {
+    type: "submit",
+    "aria-label": "Zertifikat schließen",
+  });
+  const closeIcon = createElement("span", {
+    class: "icon icon-close-light",
+    "aria-hidden": "true",
+  });
+  const content = createElement("div", { class: "certificate-dialog-content" });
+  const title = createElement("h2", { id: `certificate-dialog-${certificate.id}-title` }, certificate.shortTitle || certificate.title);
+  const description = createElement("p", {}, certificate.description);
+  const pdf = createElement("object", {
+    class: "certificate-pdf",
+    data: certificate.pdf,
+    type: "application/pdf",
+    "aria-label": certificate.pdfLabel,
+  });
+  const fallback = createElement("p", {}, "Die PDF-Vorschau kann in diesem Browser nicht angezeigt werden.");
+  const actions = createElement("div", { class: "certificate-dialog-actions" });
+  const pdfLink = createElement("a", {
+    class: "button button-primary",
+    href: certificate.pdf,
+    target: "_blank",
+    rel: "noopener",
+  }, "PDF öffnen");
+
+  closeButton.append(closeIcon);
+  form.append(closeButton);
+  pdf.append(fallback);
+  actions.append(pdfLink);
+
+  if (certificate.externalUrl) {
+    actions.append(createElement("a", {
+      class: "button button-secondary",
+      href: certificate.externalUrl,
+      target: "_blank",
+      rel: "noopener",
+    }, certificate.externalLabel));
+  }
+
+  content.append(title, description, pdf, actions);
+  dialog.append(form, content);
+  return dialog;
+}
+
+async function renderCertificates() {
+  const certificateList = document.querySelector("[data-certificates]");
+  const dialogContainer = document.querySelector("[data-certificate-dialogs]");
+
+  if (!certificateList || !dialogContainer) {
+    return;
+  }
+
+  const response = await fetch("data/certificates.json");
+
+  if (!response.ok) {
+    throw new Error("Zertifikate konnten nicht geladen werden.");
+  }
+
+  const certificates = await response.json();
+
+  certificateList.textContent = "";
+  dialogContainer.textContent = "";
+  certificateList.append(...certificates.map(createCertificateCard));
+  dialogContainer.append(...certificates.map(createCertificateDialog));
+}
+
+function showCertificateError() {
+  const certificateList = document.querySelector("[data-certificates]");
+
+  if (!certificateList) {
+    return;
+  }
+
+  certificateList.textContent = "";
+  certificateList.append(createElement("li", { class: "certificate-error" }, "Zertifikate konnten nicht geladen werden."));
+}
+
+// Zertifikatsdialoge öffnen
+function initCertificateDialogs() {
+  const certificateButtons = document.querySelectorAll(".certificate-badge-link[aria-controls]");
+
+  certificateButtons.forEach((button) => {
+    const dialogId = button.getAttribute("aria-controls");
+    const dialog = document.getElementById(dialogId);
+
+    if (!dialog || typeof dialog.showModal !== "function") {
+      return;
+    }
+
+    button.addEventListener("click", () => {
+      dialog.showModal();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+      }
+    });
+  });
+}
+
 function initShareLinks() {
   const shareLinks = document.querySelectorAll(".video-share-link");
 
@@ -252,5 +403,11 @@ initLayoutPartials().catch((error) => {
 });
 
 initVideoDialogs();
+renderCertificates()
+  .then(initCertificateDialogs)
+  .catch((error) => {
+    console.error(error);
+    showCertificateError();
+  });
 initShareLinks();
 initBackButtons();
