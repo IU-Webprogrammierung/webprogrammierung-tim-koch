@@ -68,6 +68,10 @@
     }
   }
 
+  .profile-image {
+    width: 100%;
+  }
+
   .timeline-list {
     > li {
       padding-left: 3.5rem;
