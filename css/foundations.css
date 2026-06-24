@@ -44,7 +44,9 @@
 
   --icon-case-round: url("../assets/icons/case-round.svg");
   --icon-burger-menu: url("../assets/icons/burger-menu.svg");
+  --icon-clapperboard: url("../assets/icons/clapperboard.svg");
   --icon-close-light: url("../assets/icons/close-circle-hell.svg");
+  --icon-code: url("../assets/icons/code.svg");
   --icon-email: url("../assets/icons/E-Mail.svg");
   --icon-github: url("../assets/icons/GitHub.svg");
   --icon-google-play: url("../assets/icons/Google-G-Logo.svg");
@@ -52,6 +54,7 @@
   --icon-settings: url("../assets/icons/set-up.svg");
   --icon-share-light: url("../assets/icons/square-share-hell.svg");
   --icon-square-academic: url("../assets/icons/square-academic.svg");
+  --icon-user: url("../assets/icons/user.svg");
 }
 
 body[data-theme="dark"] {
@@ -197,8 +200,16 @@ p {
   background-image: var(--icon-burger-menu);
 }
 
+.icon-clapperboard {
+  background-image: var(--icon-clapperboard);
+}
+
 .icon-email {
   background-image: var(--icon-email);
+}
+
+.icon-code {
+  background-image: var(--icon-code);
 }
 
 .icon-github {
@@ -221,13 +232,20 @@ p {
   background-image: var(--icon-square-academic);
 }
 
+.icon-user {
+  background-image: var(--icon-user);
+}
+
 body[data-theme="dark"] {
   .icon-burger-menu,
   .icon-case-round,
+  .icon-clapperboard,
+  .icon-code,
   .icon-email,
   .icon-github,
   .icon-settings,
-  .icon-square-academic {
+  .icon-square-academic,
+  .icon-user {
     filter: brightness(0) invert(1);
   }
 }

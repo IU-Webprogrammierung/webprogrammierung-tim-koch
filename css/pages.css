@@ -44,6 +44,17 @@
     padding: var(--space-large);
   }
 
+  .teaser-icon {
+    display: grid;
+    width: 2.75rem;
+    height: 2.75rem;
+    place-items: center;
+    margin-bottom: var(--space-medium);
+    border-radius: 50%;
+    background-color: var(--color-surface-muted);
+    background-size: 1.55rem;
+  }
+
   h3 {
     margin-bottom: var(--space-small);
   }
