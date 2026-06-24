@@ -56,7 +56,7 @@
             </ul>
 
             <div class="project-links" aria-label="Projektlinks">
-              <button class="project-status project-status-demo" type="button" disabled title="Aktuell in der Testphase">
+              <button class="project-link project-link-demo" type="button" aria-haspopup="dialog" aria-controls="beta-test-dialog">
                 <span class="icon icon-google-play" aria-hidden="true"></span>
                 <span>Google Play</span>
               </button>
@@ -88,7 +88,7 @@
                 <span>Code</span>
               </a>
               <a class="project-link project-link-demo" href="https://www.planteller.de" target="_blank" rel="noopener">
-                <span aria-hidden="true">↗</span>
+                <span class="icon icon-arrow-right-up" aria-hidden="true"></span>
                 <span>Webseite</span>
               </a>
             </div>
@@ -122,7 +122,7 @@
                 <span>Code</span>
               </a>
               <a class="project-link project-link-document" href="assets/documents/Projekt.pdf" target="_blank" rel="noopener">
-                <span aria-hidden="true">↗</span>
+                <span class="icon icon-arrow-right-up" aria-hidden="true"></span>
                 <span>Fallstudie</span>
               </a>
             </div>
@@ -130,6 +130,54 @@
         </article>
       </div>
     </section>
+
+    <!-- Anmeldung für die PlanTeller-Testphase -->
+    <dialog class="beta-dialog" id="beta-test-dialog" aria-labelledby="beta-dialog-title">
+      <form method="dialog" class="dialog-close-form">
+        <button type="submit" aria-label="Beta-Anmeldung schließen">
+          <span class="icon icon-close-light" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <form class="beta-form" data-beta-form>
+        <h2 id="beta-dialog-title">Beta-Test für PlanTeller</h2>
+        <p>
+          PlanTeller befindet sich aktuell in der Testphase. Wenn du die App ausprobieren möchtest, kannst du dich hier für den Beta-Test vormerken lassen. 
+          Du erhältst dann alle Informationen und den Link zum Beta-Test zeitnah per E-Mail.
+        </p>
+
+        <div class="form-field">
+          <label for="beta-name">Name</label>
+          <input id="beta-name" name="name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="form-field">
+          <label for="beta-email">E-Mail</label>
+          <div class="email-input-group">
+            <input id="beta-email" name="emailLocal" type="text" inputmode="email" autocomplete="username" aria-describedby="beta-email-hint" required>
+            <span aria-hidden="true">@</span>
+            <select name="emailDomain" aria-label="E-Mail-Domain">
+              <option value="gmail.com" selected>gmail.com</option>
+              <option value="googlemail.com">googlemail.com</option>
+            </select>
+          </div>
+          <p class="field-hint" id="beta-email-hint">Für den Google-Play-Test wird eine Gmail- oder Googlemail-Adresse benötigt.</p>
+        </div>
+
+        <div class="additional-people">
+          <div class="additional-people-header">
+            <p class="form-label">Weitere Personen</p>
+            <button class="button button-secondary" type="button" data-add-beta-person>
+              <span class="icon icon-user-plus" aria-hidden="true"></span>
+              <span class="button-text">Person hinzufügen</span>
+            </button>
+          </div>
+          <div class="additional-people-list" data-beta-people></div>
+        </div>
+
+        <button class="button button-primary" type="submit">Anmeldung per E-Mail senden</button>
+      </form>
+    </dialog>
 
     <!-- Kontaktaufruf -->
     <section class="cta-section" aria-labelledby="projects-cta-title">

@@ -62,6 +62,18 @@
     margin-top: 0;
   }
 
+  .additional-people-header .button,
+  .additional-person-remove {
+    .button-text {
+      position: static;
+      width: auto;
+      height: auto;
+      overflow: visible;
+      clip: auto;
+      white-space: normal;
+    }
+  }
+
   .about-hero {
     .container {
       grid-template-columns: minmax(16rem, 0.9fr) minmax(0, 1.1fr);

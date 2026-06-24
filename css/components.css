@@ -60,6 +60,7 @@
   font-weight: 600;
   line-height: 1.2;
   white-space: nowrap;
+  cursor: pointer;
 }
 
 .project-link {
@@ -94,6 +95,15 @@
 
   &:hover .icon {
     filter: brightness(0) invert(1);
+  }
+}
+
+body[data-theme="dark"] {
+  .project-link-demo,
+  .project-link-document {
+    .icon-arrow-right-up {
+      filter: brightness(0);
+    }
   }
 }
 

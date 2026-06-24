@@ -42,6 +42,7 @@
   --space-section: 4rem;
   --transition-base: 180ms ease;
 
+  --icon-arrow-right-up: url("../assets/icons/arrow-right-up.svg");
   --icon-case-round: url("../assets/icons/case-round.svg");
   --icon-burger-menu: url("../assets/icons/burger-menu.svg");
   --icon-clapperboard: url("../assets/icons/clapperboard.svg");
@@ -54,6 +55,8 @@
   --icon-settings: url("../assets/icons/set-up.svg");
   --icon-share-light: url("../assets/icons/square-share-hell.svg");
   --icon-square-academic: url("../assets/icons/square-academic.svg");
+  --icon-user-minus: url("../assets/icons/user-minus.svg");
+  --icon-user-plus: url("../assets/icons/user-plus.svg");
   --icon-user: url("../assets/icons/user.svg");
 }
 
@@ -192,6 +195,10 @@ p {
   background-image: var(--icon-close-light);
 }
 
+.icon-arrow-right-up {
+  background-image: var(--icon-arrow-right-up);
+}
+
 .icon-case-round {
   background-image: var(--icon-case-round);
 }
@@ -236,6 +243,14 @@ p {
   background-image: var(--icon-user);
 }
 
+.icon-user-minus {
+  background-image: var(--icon-user-minus);
+}
+
+.icon-user-plus {
+  background-image: var(--icon-user-plus);
+}
+
 body[data-theme="dark"] {
   .icon-burger-menu,
   .icon-case-round,
@@ -245,7 +260,9 @@ body[data-theme="dark"] {
   .icon-github,
   .icon-settings,
   .icon-square-academic,
-  .icon-user {
+  .icon-user,
+  .icon-user-minus,
+  .icon-user-plus {
     filter: brightness(0) invert(1);
   }
 }

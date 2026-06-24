@@ -349,6 +349,170 @@ function initCertificateDialogs() {
   });
 }
 
+// Beta-Anmeldung per E-Mail vorbereiten
+function initBetaTestDialog() {
+  const betaButton = document.querySelector('[aria-controls="beta-test-dialog"]');
+  const dialog = document.getElementById("beta-test-dialog");
+  const form = document.querySelector("[data-beta-form]");
+  const addPersonButton = document.querySelector("[data-add-beta-person]");
+  const peopleList = document.querySelector("[data-beta-people]");
+
+  if (!betaButton || !dialog || typeof dialog.showModal !== "function" || !form) {
+    return;
+  }
+
+  const updatePersonNumbers = () => {
+    if (!peopleList) {
+      return;
+    }
+
+    peopleList.querySelectorAll(".additional-person").forEach((fieldset, index) => {
+      const personNumber = index + 1;
+      const legend = fieldset.querySelector("legend");
+      const removeButton = fieldset.querySelector(".additional-person-remove");
+
+      if (legend) {
+        legend.textContent = `Person ${personNumber}`;
+      }
+
+      removeButton?.setAttribute("aria-label", `Person ${personNumber} entfernen`);
+    });
+  };
+
+  const addPersonFieldset = () => {
+    if (!peopleList) {
+      return;
+    }
+
+    const personNumber = peopleList.querySelectorAll(".additional-person").length + 1;
+    const fieldId = `beta-person-${Date.now()}-${personNumber}`;
+
+    const fieldset = createElement("fieldset", { class: "additional-person" });
+    const legend = createElement("legend", {}, `Person ${personNumber}`);
+    const removeButton = createElement("button", {
+      class: "additional-person-remove",
+      type: "button",
+      "aria-label": `Person ${personNumber} entfernen`,
+    });
+    const removeIcon = createElement("span", {
+      class: "icon icon-user-minus",
+      "aria-hidden": "true",
+    });
+    const removeText = createElement("span", { class: "button-text" }, "Entfernen");
+    const nameField = createElement("div", { class: "form-field" });
+    const nameId = `${fieldId}-name`;
+    const nameLabel = createElement("label", { for: nameId }, "Name");
+    const nameInput = createElement("input", {
+      id: nameId,
+      name: "additionalPersonName",
+      type: "text",
+      autocomplete: "name",
+    });
+    const emailField = createElement("div", { class: "form-field" });
+    const emailId = `${fieldId}-email`;
+    const emailLabel = createElement("label", { for: emailId }, "E-Mail");
+    const emailGroup = createElement("div", { class: "email-input-group" });
+    const emailInput = createElement("input", {
+      id: emailId,
+      name: "additionalPersonEmailLocal",
+      type: "text",
+      inputmode: "email",
+      autocomplete: "username",
+      "aria-describedby": `${fieldId}-email-hint`,
+    });
+    const atSign = createElement("span", { "aria-hidden": "true" }, "@");
+    const emailDomain = createElement("select", {
+      name: "additionalPersonEmailDomain",
+      "aria-label": "E-Mail-Domain",
+    });
+    const gmailOption = createElement("option", { value: "gmail.com", selected: "selected" }, "gmail.com");
+    const googlemailOption = createElement("option", { value: "googlemail.com" }, "googlemail.com");
+    const emailHint = createElement("p", {
+      class: "field-hint",
+      id: `${fieldId}-email-hint`,
+    }, "Für den Google-Play-Test wird eine Gmail- oder Googlemail-Adresse benötigt.");
+
+    emailDomain.append(gmailOption, googlemailOption);
+    emailGroup.append(emailInput, atSign, emailDomain);
+    nameField.append(nameLabel, nameInput);
+    emailField.append(emailLabel, emailGroup, emailHint);
+    removeButton.append(removeIcon, removeText);
+    removeButton.addEventListener("click", () => {
+      fieldset.remove();
+      updatePersonNumbers();
+      addPersonButton?.focus();
+    });
+
+    fieldset.append(legend, removeButton, nameField, emailField);
+    peopleList.append(fieldset);
+    nameInput.focus();
+  };
+
+  betaButton.addEventListener("click", () => {
+    dialog.showModal();
+  });
+
+  addPersonButton?.addEventListener("click", addPersonFieldset);
+
+  dialog.addEventListener("click", (event) => {
+    if (event.target === dialog) {
+      dialog.close();
+    }
+  });
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+
+    const formData = new FormData(form);
+    const name = formData.get("name")?.toString().trim() || "";
+    const emailLocal = formData.get("emailLocal")?.toString().trim() || "";
+    const emailDomain = formData.get("emailDomain")?.toString().trim() || "gmail.com";
+    const email = `${emailLocal}@${emailDomain}`;
+    const additionalNames = formData.getAll("additionalPersonName").map((value) => value.toString().trim());
+    const additionalEmailLocals = formData.getAll("additionalPersonEmailLocal").map((value) => value.toString().trim());
+    const additionalEmailDomains = formData.getAll("additionalPersonEmailDomain").map((value) => value.toString().trim() || "gmail.com");
+    const additionalEmails = additionalEmailLocals.map((value, index) => value ? `${value}@${additionalEmailDomains[index] || "gmail.com"}` : "");
+
+    if (!emailLocal) {
+      form.elements.emailLocal.setCustomValidity("Bitte gib den vorderen Teil deiner Gmail- oder Googlemail-Adresse ein.");
+      form.elements.emailLocal.reportValidity();
+      form.elements.emailLocal.setCustomValidity("");
+      return;
+    }
+
+    const additionalPeople = additionalNames
+      .map((personName, index) => {
+        const personEmail = additionalEmails[index] || "";
+
+        if (!personName && !personEmail) {
+          return "";
+        }
+
+        return `- ${personName || "Ohne Namen"}: ${personEmail || "Keine E-Mail angegeben"}`;
+      })
+      .filter(Boolean)
+      .join("\n") || "Keine weiteren Personen angegeben.";
+    const subject = "Beta-Test Anmeldung PlanTeller";
+    const body = [
+      "Hallo,",
+      "",
+      "ich möchte mich für den Beta-Test von PlanTeller anmelden.",
+      "",
+      `Name: ${name}`,
+      `E-Mail: ${email}`,
+      "",
+      "Weitere Personen:",
+      additionalPeople,
+      "",
+      "Viele Grüße",
+      name,
+    ].join("\n");
+
+    window.location.href = `mailto:kochbuch_app@outlook.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    dialog.close();
+  });
+}
+
 function initShareLinks() {
   const shareLinks = document.querySelectorAll(".video-share-link");
 
@@ -402,6 +566,7 @@ initLayoutPartials().catch((error) => {
 });
 
 initVideoDialogs();
+initBetaTestDialog();
 renderCertificates()
   .then(initCertificateDialogs)
   .catch((error) => {
