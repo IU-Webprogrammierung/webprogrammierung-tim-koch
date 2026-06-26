@@ -1,7 +1,7 @@
 /* Schrift */
 @font-face {
   font-family: "Inter";
-  src: url("../assets/fonts/Inter/Inter-VariableFont_opsz,wght.woff2") format("woff2");
+  src: url("../assets/fonts/Inter/Inter-Portfolio.woff2") format("woff2");
   font-weight: 100 900;
   font-style: normal;
   font-display: swap;
@@ -13,7 +13,7 @@
   --color-surface: #ffffff;
   --color-surface-soft: #f7f7f9;
   --color-text: #111111;
-  --color-text-muted: #717182;
+  --color-text-muted: #5f6170;
   --color-surface-muted: #ececf0;
   --color-border: #e9ebef;
   --color-primary: #030213;

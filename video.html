@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tim Koch | Videografie</title>
   <meta name="description" content="Videografie von Tim Koch.">
-  <link rel="preload" href="assets/fonts/Inter/Inter-VariableFont_opsz,wght.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/Inter/Inter-Portfolio.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -36,7 +37,7 @@
         <article class="video-card">
           <button type="button" class="video-card-button" aria-haspopup="dialog" aria-controls="video-dialog-joggen">
             <figure class="video-thumbnail">
-              <img src="assets/images/ThumbnailJoggen.webp" alt="Vorschau des Videos über Joggen und Alltag">
+              <img src="assets/images/ThumbnailJoggen.webp" alt="Vorschau des Videos über Joggen und Alltag" fetchpriority="high">
             </figure>
             <h3>Kreatives Projekt</h3>
             <p>Eine Alltagstätigkeit, filmisch erzählt mit Fokus auf Bildgestaltung, Schnitt und Stimmung.</p>
@@ -74,7 +75,7 @@
       </form>
 
       <div class="video-player">
-        <video controls src="assets/videos/VideoJoggen.mp4" poster="assets/images/ThumbnailJoggen.webp" preload="metadata">
+        <video controls data-src="assets/videos/VideoJoggen.mp4" poster="assets/images/ThumbnailJoggen.webp" preload="none">
           Dein Browser unterstützt das Video-Element nicht.
         </video>
       </div>
@@ -96,7 +97,7 @@
       </form>
 
       <div class="video-player">
-        <video controls src="assets/videos/ThailandVideoCompressed.mp4" poster="assets/images/ThailandThumbnail.webp" preload="metadata">
+        <video controls data-src="assets/videos/ThailandVideoCompressed.mp4" poster="assets/images/ThailandThumbnail.webp" preload="none">
           Dein Browser unterstützt das Video-Element nicht.
         </video>
       </div>

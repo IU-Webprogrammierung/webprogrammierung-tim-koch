@@ -175,6 +175,13 @@ function initVideoDialogs() {
       dialog.showModal();
 
       requestAnimationFrame(() => {
+        dialog.querySelectorAll("video[data-src]").forEach((video) => {
+          if (!video.src) {
+            video.src = video.dataset.src;
+            video.load();
+          }
+        });
+
         dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {
           iframe.src = iframe.dataset.src;
         });
@@ -184,6 +191,8 @@ function initVideoDialogs() {
     dialog.addEventListener("close", () => {
       dialog.querySelectorAll("video").forEach((video) => {
         video.pause();
+        video.removeAttribute("src");
+        video.load();
       });
 
       dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {

@@ -1,3 +1,18 @@
+/* Platzhalter für nachgeladene Partials */
+[data-partial="partials/settings.html"] {
+  min-height: 2.9rem;
+  border-bottom: 1px solid var(--color-border);
+  background: var(--color-surface-muted);
+}
+
+[data-partial="partials/header.html"] {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  min-height: 4.05rem;
+  background: var(--color-surface);
+}
+
 /* Header und Navigation */
 .settings {
   position: relative;
@@ -74,12 +89,6 @@
     min-width: 3rem;
     text-align: center;
   }
-}
-
-[data-partial="partials/header.html"] {
-  position: sticky;
-  top: 0;
-  z-index: 30;
 }
 
 .site-header {

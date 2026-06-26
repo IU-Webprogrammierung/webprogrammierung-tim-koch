@@ -25,11 +25,11 @@ Die Website besteht aktuell aus folgenden Seiten:
 - Grid und Flexbox für Layouts und Karten
 - aufgeteilte CSS-Struktur mit `foundations.css`, `layout.css`, `components.css`, `pages.css` und `responsive.css`
 - CSS Nesting zur besseren Strukturierung zusammengehöriger Regeln
-- lokale Schriftdatei Inter als WOFF2
+- lokale Schriftdatei Inter als optimierte WOFF2-Teilmenge
 - optimierte WebP-Bilder
 - JavaScript für Partials, aktive Navigation, Burger-Menü, Einstellungen, Videodialoge und 404-Zurück-Button
 - Sticky Navigation
-- lokale Videos mit `preload="metadata"`
+- lokale Videos werden erst beim Öffnen des Videodialogs geladen
 - YouTube-Video wird erst beim Öffnen des Dialogs geladen
 
 ### Aktuelle Projektstruktur
@@ -37,6 +37,8 @@ Die Website besteht aktuell aus folgenden Seiten:
 ```text
 .
 ├── assets/
+│   ├── badges/
+│   ├── certificates/
 │   ├── documents/
 │   ├── fonts/
 │   ├── icons/
@@ -51,6 +53,8 @@ Die Website besteht aktuell aus folgenden Seiten:
 │   └── style.css
 ├── js/
 │   └── main.js
+├── data/
+│   └── certificates.json
 ├── partials/
 │   ├── footer.html
 │   ├── header.html
@@ -100,7 +104,24 @@ http://localhost:8000/index.html
 
 ### Hinweise zu Performance
 
-Die Bilder wurden für bessere Ladezeiten optimiert und liegen als WebP-Dateien vor. JavaScript wird mit `defer` geladen. Videos werden nicht vollständig vorgeladen. Hinweise von Lighthouse zu Cache-Headern sind serverseitig zu lösen und können bei lokaler Entwicklung nur eingeschränkt beeinflusst werden.
+Die Bilder wurden für bessere Ladezeiten optimiert und liegen als WebP-Dateien vor. JavaScript wird mit `defer` geladen. Die lokale Inter-Schrift wird als kleinere Teilmenge geladen. Videos werden nicht vollständig vorgeladen, sondern erst beim Öffnen des jeweiligen Dialogs eingebunden. Hinweise von Lighthouse zu Cache-Headern sind serverseitig zu lösen und können bei lokaler Entwicklung nur eingeschränkt beeinflusst werden.
+
+### Durchgeführte Tests
+
+Die Website wurde lokal mit folgendem Server geprüft:
+
+```bash
+python3 -m http.server 8000
+```
+
+Zusätzlich wurden folgende technische Tests durchgeführt:
+
+- `node --check js/main.js` zur Prüfung der JavaScript-Syntax
+- JSON-Prüfung für `data/certificates.json`
+- CSS-Klammerprüfung für alle CSS-Dateien
+- Lighthouse-Prüfung für `index.html`, `about.html`, `video.html`, `projects.html`, `imprint.html` und `404.html`
+
+Die Lighthouse-Prüfung wurde jeweils für Mobile und Desktop durchgeführt. Nach der Optimierung lagen alle Seiten bei mindestens 97 Punkten in Performance auf Mobile und bei 100 Punkten auf Desktop. Accessibility, Best Practices und SEO lagen auf allen geprüften Seiten bei 100 Punkten.
 
 ## Phase 1:
 
