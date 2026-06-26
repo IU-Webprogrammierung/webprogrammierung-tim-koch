@@ -1005,12 +1005,14 @@
 }
 
 .error-illustration {
+  aspect-ratio: 665 / 508;
   max-width: 36rem;
   margin: 0 auto var(--space-large);
 
   img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: contain;
   }
 }
 
