@@ -513,6 +513,52 @@ function initBetaTestDialog() {
   });
 }
 
+// Kontaktformular per E-Mail vorbereiten
+function initContactDialogs() {
+  const contactButtons = document.querySelectorAll('[aria-controls="contact-dialog"]');
+
+  contactButtons.forEach((button) => {
+    const dialog = document.getElementById(button.getAttribute("aria-controls"));
+    const form = dialog?.querySelector("[data-contact-form]");
+
+    if (!dialog || typeof dialog.showModal !== "function" || !form) {
+      return;
+    }
+
+    button.addEventListener("click", () => {
+      dialog.showModal();
+    });
+
+    dialog.addEventListener("click", (event) => {
+      if (event.target === dialog) {
+        dialog.close();
+      }
+    });
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(form);
+      const name = formData.get("name")?.toString().trim() || "";
+      const email = formData.get("email")?.toString().trim() || "";
+      const subject = formData.get("subject")?.toString().trim() || "Kontakt über Portfolio";
+      const message = formData.get("message")?.toString().trim() || "";
+      const body = [
+        "Hallo Tim,",
+        "",
+        message,
+        "",
+        "Kontaktangaben:",
+        `Name: ${name}`,
+        `E-Mail: ${email}`,
+      ].join("\n");
+
+      window.location.href = `mailto:tim.koch1@iu-study.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      dialog.close();
+    });
+  });
+}
+
 function initShareLinks() {
   const shareLinks = document.querySelectorAll(".video-share-link");
 
@@ -567,6 +613,7 @@ initLayoutPartials().catch((error) => {
 
 initVideoDialogs();
 initBetaTestDialog();
+initContactDialogs();
 renderCertificates()
   .then(initCertificateDialogs)
   .catch((error) => {

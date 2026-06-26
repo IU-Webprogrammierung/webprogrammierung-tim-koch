@@ -118,9 +118,47 @@
       <div class="container">
         <h2 id="cta-title">Lust auf Austausch?</h2>
         <p>Wenn dich meine Arbeit interessiert oder du einfach Kontakt aufnehmen möchtest, freue ich mich über eine Nachricht.</p>
-        <a class="button button-primary" href="mailto:tim.koch1@iu-study.org">Kontakt aufnehmen</a>
+        <button class="button button-primary" type="button" aria-haspopup="dialog" aria-controls="contact-dialog">Kontakt aufnehmen</button>
       </div>
     </section>
+
+    <!-- Kontaktformular -->
+    <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title">
+      <form method="dialog" class="dialog-close-form">
+        <button type="submit" aria-label="Kontaktformular schließen">
+          <span class="icon icon-close-light" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <form class="contact-form" data-contact-form>
+        <h2 id="contact-dialog-title">Kontakt aufnehmen</h2>
+        <p>
+          Schreib mir gern eine kurze Nachricht. Beim Absenden wird dein Mailprogramm mit der vorbereiteten E-Mail geöffnet.
+        </p>
+
+        <div class="form-field">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="form-field">
+          <label for="contact-email">E-Mail</label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="form-field">
+          <label for="contact-subject">Betreff</label>
+          <input id="contact-subject" name="subject" type="text" value="Kontakt über Portfolio" required>
+        </div>
+
+        <div class="form-field">
+          <label for="contact-message">Nachricht</label>
+          <textarea id="contact-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button class="button button-primary" type="submit">E-Mail vorbereiten</button>
+      </form>
+    </dialog>
   </main>
   <div data-partial="partials/footer.html"></div>
 </body>

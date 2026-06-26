@@ -214,7 +214,8 @@
   }
 }
 
-.beta-dialog {
+.beta-dialog,
+.contact-dialog {
   width: min(100% - 2rem, 42rem);
   max-height: calc(100vh - 2rem);
   overflow: auto;
@@ -258,7 +259,8 @@
   }
 }
 
-.beta-form {
+.beta-form,
+.contact-form {
   display: grid;
   gap: var(--space-medium);
   padding: var(--space-xl);

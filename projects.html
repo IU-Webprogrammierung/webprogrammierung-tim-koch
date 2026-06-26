@@ -184,9 +184,47 @@
       <div class="container">
         <h2 id="projects-cta-title">Hast du eine Projektidee?</h2>
         <p>Ich freue mich über Austausch, neue Ideen und spannende Herausforderungen.</p>
-        <a class="button button-primary" href="mailto:tim.koch1@iu-study.org">Lass uns sprechen</a>
+        <button class="button button-primary" type="button" aria-haspopup="dialog" aria-controls="contact-dialog">Lass uns sprechen</button>
       </div>
     </section>
+
+    <!-- Kontaktformular -->
+    <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title">
+      <form method="dialog" class="dialog-close-form">
+        <button type="submit" aria-label="Kontaktformular schließen">
+          <span class="icon icon-close-light" aria-hidden="true"></span>
+        </button>
+      </form>
+
+      <form class="contact-form" data-contact-form>
+        <h2 id="contact-dialog-title">Projektidee besprechen</h2>
+        <p>
+          Schreib mir gern kurz, worum es geht. Beim Absenden wird dein Mailprogramm mit der vorbereiteten E-Mail geöffnet.
+        </p>
+
+        <div class="form-field">
+          <label for="contact-name">Name</label>
+          <input id="contact-name" name="name" type="text" autocomplete="name" required>
+        </div>
+
+        <div class="form-field">
+          <label for="contact-email">E-Mail</label>
+          <input id="contact-email" name="email" type="email" autocomplete="email" required>
+        </div>
+
+        <div class="form-field">
+          <label for="contact-subject">Betreff</label>
+          <input id="contact-subject" name="subject" type="text" value="Projektidee über Portfolio" required>
+        </div>
+
+        <div class="form-field">
+          <label for="contact-message">Nachricht</label>
+          <textarea id="contact-message" name="message" rows="5" required></textarea>
+        </div>
+
+        <button class="button button-primary" type="submit">E-Mail vorbereiten</button>
+      </form>
+    </dialog>
   </main>
   <div data-partial="partials/footer.html"></div>
 </body>
