@@ -109,7 +109,6 @@ body[data-theme="dark"] {
 
 .project-status {
   margin: 0;
-  margin-bottom: 0;
   background: var(--color-surface-muted);
   color: var(--color-text);
 

@@ -24,8 +24,7 @@
     width: auto;
     height: auto;
     justify-content: end;
-    flex-direction: row;
-    flex-wrap: wrap;
+    flex-flow: row wrap;
     max-height: none;
     overflow: visible;
     opacity: 1;

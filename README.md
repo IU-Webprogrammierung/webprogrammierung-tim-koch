@@ -118,7 +118,11 @@ Zusätzlich wurden folgende technische Tests durchgeführt:
 
 - `node --check js/main.js` zur Prüfung der JavaScript-Syntax
 - JSON-Prüfung für `data/certificates.json`
+- HTML-Prüfung mit dem W3C Markup Validator: <https://validator.w3.org>
+- gefundene HTML-Strukturhinweise wurden lokal mit `html-validate` nachgeprüft
 - CSS-Klammerprüfung für alle CSS-Dateien
+- `npm run lint:css` zur Prüfung der CSS-Dateien mit Stylelint
+- Barrierefreiheitsprüfung mit WAVE: <https://wave.webaim.org/report#/https://iu-webprogrammierung.github.io/webprogrammierung-tim-koch/index.html>
 - Lighthouse-Prüfung für `index.html`, `about.html`, `video.html`, `projects.html`, `imprint.html` und `404.html`
 
 Die Lighthouse-Prüfung wurde jeweils für Mobile und Desktop durchgeführt. Nach der Optimierung lagen alle Seiten bei mindestens 97 Punkten in Performance auf Mobile und bei 100 Punkten auf Desktop. Accessibility, Best Practices und SEO lagen auf allen geprüften Seiten bei 100 Punkten.

@@ -103,8 +103,7 @@
   grid-template-columns: 1fr auto;
   grid-template-rows: 4rem auto;
   align-items: center;
-  column-gap: var(--space-medium);
-  row-gap: 0;
+  gap: 0 var(--space-medium);
 }
 
 .logo {
