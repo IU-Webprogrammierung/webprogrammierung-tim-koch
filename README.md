@@ -1,7 +1,17 @@
 # Portfolio Website
 
 Dieses Repository enthält meine Portfolio-Website für das Modul Webprogrammierung.
-Die Website wird schrittweise entwickelt und dokumentiert. Der aktuelle Stand gehört zur zweiten Phase.
+Die Website wird schrittweise entwickelt und dokumentiert. Der aktuelle Stand gehört zur dritten Phase.
+
+## Phase 3:
+
+In Phase 3 wird die Website gezielt verfeinert. Im Fokus stehen echter Formularversand, bessere Interaktionen, ein weiter ausgearbeiteter Dark Mode, eine dezente Frosted-Glass-Navigation, finale Bildoptimierung und erneute Qualitätsprüfungen.
+
+### Bibliotheksstrategie
+
+Für Phase 3 wird bewusst kein großes CSS- oder UI-Framework wie Bootstrap oder Tailwind eingeführt. Die Website besitzt bereits ein eigenes CSS-System mit Design Tokens, Komponenten, Layout-Dateien und responsiven Regeln. Eine vollständige Umstellung auf ein Framework würde die bestehende Struktur unnötig vergrößern und viele bereits gelöste Bereiche doppeln.
+
+Externe Dienste oder kleine Bibliotheken werden nur eingesetzt, wenn sie einen klaren Zweck erfüllen. Geplant ist der gezielte Einsatz von Formspree für den Formularversand. Weitere Bibliotheken werden nur geprüft, wenn sie Barrierefreiheit, Wartbarkeit oder Bedienbarkeit nachweisbar verbessern.
 
 ## Phase 2:
 
