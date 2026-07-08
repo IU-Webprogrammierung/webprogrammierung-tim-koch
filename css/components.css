@@ -47,8 +47,7 @@
   align-items: center;
 }
 
-.project-link,
-.project-status {
+.project-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -107,22 +106,7 @@ body[data-theme="dark"] {
   }
 }
 
-.project-status {
-  margin: 0;
-  background: var(--color-surface-muted);
-  color: var(--color-text);
-
-  .project-content & {
-    margin: 0;
-  }
-
-  .icon {
-    width: 1rem;
-    height: 1rem;
-  }
-}
-
-/* Tags und Status */
+/* Tags */
 .tag-list {
   display: flex;
   flex-wrap: wrap;
@@ -139,10 +123,6 @@ body[data-theme="dark"] {
     font-size: var(--font-size-small);
     line-height: 1.3;
   }
-}
-
-.project-status-demo {
-  border: 1px solid var(--color-border);
 }
 
 /* Bewegungsreduktion */
