@@ -19,7 +19,7 @@
   --color-primary: #030213;
   --color-primary-text: #ffffff;
   --color-focus: #4f46e5;
-  --color-header-glass: rgba(255, 255, 255, 0.78);
+  --color-header-glass: rgba(255, 255, 255, 0.44);
 
   --container-width: 1120px;
   --content-width: 720px;
@@ -72,7 +72,7 @@ body[data-theme="dark"] {
   --color-primary: #f7f7f9;
   --color-primary-text: #111111;
   --color-focus: #8ab4ff;
-  --color-header-glass: rgba(23, 24, 32, 0.78);
+  --color-header-glass: rgba(23, 24, 32, 0.5);
   --shadow-card: 0 1rem 2.5rem rgba(0, 0, 0, 0.32);
   --shadow-hover: 0 1.5rem 3rem rgba(0, 0, 0, 0.42);
 }

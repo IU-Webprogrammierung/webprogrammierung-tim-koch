@@ -11,6 +11,7 @@
   z-index: 30;
   min-height: 4.05rem;
   background: var(--color-surface);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base);
 }
 
 /* Header und Navigation */
@@ -93,18 +94,21 @@
 
 .site-header {
   border-bottom: 1px solid var(--color-border);
-  background: var(--color-surface);
-  transition: background-color var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+  background: transparent;
+  transition: border-color var(--transition-base);
 }
 
 body.is-scrolled:not([data-contrast="high"]) {
+  [data-partial="partials/header.html"] {
+    background: var(--color-header-glass);
+    box-shadow: 0 0.9rem 2.4rem rgba(3, 2, 19, 0.1);
+    backdrop-filter: blur(18px) saturate(160%);
+    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari braucht den Präfix für den Glas-Effekt. */
+    -webkit-backdrop-filter: blur(18px) saturate(160%);
+  }
+
   .site-header {
     border-color: color-mix(in srgb, var(--color-border) 74%, transparent);
-    background: var(--color-header-glass);
-    box-shadow: 0 0.8rem 2rem rgba(3, 2, 19, 0.08);
-    backdrop-filter: blur(14px);
-    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari braucht den Präfix für den Glas-Effekt. */
-    -webkit-backdrop-filter: blur(14px);
   }
 }
 
