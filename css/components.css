@@ -92,8 +92,12 @@
     height: 1rem;
   }
 
-  &:hover .icon {
+  &:hover .icon:not(.icon-google-play) {
     filter: brightness(0) invert(1);
+  }
+
+  .icon-google-play {
+    filter: none;
   }
 }
 

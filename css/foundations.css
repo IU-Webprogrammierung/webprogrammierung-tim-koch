@@ -262,11 +262,9 @@ p {
 
 body[data-theme="dark"] {
   .icon-burger-menu,
-  .icon-case-round,
   .icon-email,
   .icon-github,
   .icon-reset,
-  .icon-square-academic,
   .icon-user-minus,
   .icon-user-plus {
     filter: brightness(0) invert(1);

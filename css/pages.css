@@ -657,6 +657,9 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
 .video-dialog {
   h2 {
     margin: 0;
+    color: var(--color-text);
+    font-size: 1.35rem;
+    line-height: 1.2;
   }
 
   p {
@@ -850,7 +853,13 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
   gap: var(--space-medium);
   padding: var(--space-large);
 
-  h2,
+  h2 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+
   p {
     margin: 0;
   }
@@ -924,17 +933,45 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
 }
 
 .timeline-icon {
+  --timeline-icon-source: none;
+
   position: absolute;
   top: 0.15rem;
   left: -3rem;
+  display: grid;
   width: 2rem;
   height: 2rem;
+  place-items: center;
   border: 1px solid var(--color-border);
   border-radius: 50%;
   background-color: var(--color-surface-muted);
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: 1.25rem 1.25rem;
+  background-image: none;
+  filter: none;
+
+  &::before {
+    content: "";
+    width: 1.25rem;
+    height: 1.25rem;
+    background-color: var(--color-text);
+    mask-image: var(--timeline-icon-source);
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+    /* stylelint-disable property-no-vendor-prefix -- Safari braucht den Präfix für maskierte SVG-Icons. */
+    -webkit-mask-image: var(--timeline-icon-source);
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    /* stylelint-enable property-no-vendor-prefix */
+  }
+
+  &.icon-case-round {
+    --timeline-icon-source: var(--icon-case-round);
+  }
+
+  &.icon-square-academic {
+    --timeline-icon-source: var(--icon-square-academic);
+  }
 }
 
 .timeline-description {
