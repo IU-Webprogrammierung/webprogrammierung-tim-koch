@@ -52,7 +52,7 @@ function updateSettingsControls(settings) {
       return;
     }
 
-    button.setAttribute("aria-pressed", String(isActive));
+    button.setAttribute("aria-checked", String(isActive));
   });
 }
 

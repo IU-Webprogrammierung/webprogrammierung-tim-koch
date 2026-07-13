@@ -110,7 +110,7 @@
     color: var(--color-text);
     cursor: pointer;
 
-    &[aria-pressed="true"] {
+    &[aria-checked="true"] {
       background: var(--color-primary);
       color: var(--color-primary-text);
     }
@@ -174,7 +174,7 @@
     background: transparent;
   }
 
-  &[aria-pressed="true"] {
+  &[aria-checked="true"] {
     background: transparent;
     color: var(--color-primary);
 
