@@ -6,27 +6,41 @@
   </summary>
 
   <div class="container">
-    <div class="settings-group">
+    <div class="settings-group settings-group-font">
       <p class="settings-title">Schriftgröße</p>
       <button type="button" data-setting="font-decrease" aria-label="Schriftgröße verkleinern">-</button>
       <span data-setting="font-size-value">16px</span>
       <button type="button" data-setting="font-increase" aria-label="Schriftgröße vergrößern">+</button>
-      <button type="button" data-setting="font-reset" aria-label="Schriftgröße zurücksetzen">Zurücksetzen</button>
+      <button class="settings-icon-button" type="button" data-setting="font-reset" aria-label="Schriftgröße zurücksetzen">
+        <span class="icon icon-reset" aria-hidden="true"></span>
+      </button>
     </div>
 
-    <div class="settings-group">
+    <div class="settings-group settings-group-toggle">
       <p class="settings-title">Dunkler Modus</p>
-      <button type="button" data-setting="theme" aria-pressed="false">Deaktiviert</button>
+      <button class="settings-toggle" type="button" data-setting="theme" aria-pressed="false" aria-label="Dunklen Modus umschalten">
+        <span class="settings-toggle-track" aria-hidden="true">
+          <span class="settings-toggle-thumb"></span>
+        </span>
+      </button>
     </div>
 
-    <div class="settings-group">
+    <div class="settings-group settings-group-toggle">
       <p class="settings-title">Hoher Kontrast</p>
-      <button type="button" data-setting="contrast" aria-pressed="false">Deaktiviert</button>
+      <button class="settings-toggle" type="button" data-setting="contrast" aria-pressed="false" aria-label="Hohen Kontrast umschalten">
+        <span class="settings-toggle-track" aria-hidden="true">
+          <span class="settings-toggle-thumb"></span>
+        </span>
+      </button>
     </div>
 
-    <div class="settings-group">
+    <div class="settings-group settings-group-toggle">
       <p class="settings-title">Animationen reduzieren</p>
-      <button type="button" data-setting="motion" aria-pressed="false">Deaktiviert</button>
+      <button class="settings-toggle" type="button" data-setting="motion" aria-pressed="false" aria-label="Reduzierte Animationen umschalten">
+        <span class="settings-toggle-track" aria-hidden="true">
+          <span class="settings-toggle-thumb"></span>
+        </span>
+      </button>
     </div>
   </div>
 </details>

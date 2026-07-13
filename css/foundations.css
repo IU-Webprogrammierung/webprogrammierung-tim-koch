@@ -53,6 +53,7 @@
   --icon-github: url("../assets/icons/GitHub.svg");
   --icon-google-play: url("../assets/icons/Google-G-Logo.svg");
   --icon-play-light: url("../assets/icons/play-button-hell.svg");
+  --icon-reset: url("../assets/icons/reset.svg");
   --icon-settings: url("../assets/icons/set-up.svg");
   --icon-share-light: url("../assets/icons/square-share-hell.svg");
   --icon-square-academic: url("../assets/icons/square-academic.svg");
@@ -231,6 +232,10 @@ p {
   background-image: var(--icon-google-play);
 }
 
+.icon-reset {
+  background-image: var(--icon-reset);
+}
+
 .icon-settings {
   background-image: var(--icon-settings);
 }
@@ -260,6 +265,7 @@ body[data-theme="dark"] {
   .icon-case-round,
   .icon-email,
   .icon-github,
+  .icon-reset,
   .icon-square-academic,
   .icon-user-minus,
   .icon-user-plus {

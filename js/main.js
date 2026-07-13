@@ -53,7 +53,6 @@ function updateSettingsControls(settings) {
     }
 
     button.setAttribute("aria-pressed", String(isActive));
-    button.textContent = isActive ? "Aktiviert" : "Deaktiviert";
   });
 }
 
