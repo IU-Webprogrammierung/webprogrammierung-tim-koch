@@ -515,7 +515,7 @@ function initBetaTestDialog() {
     }
   });
 
-  form.addEventListener("submit", (event) => {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const formData = new FormData(form);
@@ -548,23 +548,27 @@ function initBetaTestDialog() {
       .filter(Boolean)
       .join("\n") || "Keine weiteren Personen angegeben.";
     const subject = "Beta-Test Anmeldung PlanTeller";
-    const body = [
-      "Hallo,",
-      "",
-      "ich möchte mich für den Beta-Test von PlanTeller anmelden.",
-      "",
-      `Name: ${name}`,
-      `E-Mail: ${email}`,
-      "",
-      "Weitere Personen:",
-      additionalPeople,
-      "",
-      "Viele Grüße",
-      name,
-    ].join("\n");
 
-    window.location.href = `mailto:kochbuch_app@outlook.de?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    dialog.close();
+    formData.set("name", name);
+    formData.set("email", email);
+    formData.set("emailLocal", emailLocal);
+    formData.set("emailDomain", emailDomain);
+    formData.set("additionalPeople", additionalPeople);
+    formData.set("_subject", subject);
+
+    setFormStatus(form, "");
+    setFormSubmitState(form, true);
+
+    try {
+      await sendForm(form, formData);
+      form.reset();
+      peopleList.textContent = "";
+      setFormStatus(form, "Danke, deine Anmeldung wurde gesendet.", "success");
+    } catch {
+      setFormStatus(form, "Die Anmeldung konnte nicht gesendet werden. Bitte versuche es später erneut.", "error");
+    } finally {
+      setFormSubmitState(form, false);
+    }
   });
 }
 
