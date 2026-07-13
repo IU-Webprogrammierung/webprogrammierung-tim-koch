@@ -568,7 +568,7 @@ function initBetaTestDialog() {
   });
 }
 
-// Kontaktformular per E-Mail vorbereiten
+// Kontaktformular senden
 function initContactDialogs() {
   const contactButtons = document.querySelectorAll('[aria-controls="contact-dialog"]');
 
@@ -590,7 +590,7 @@ function initContactDialogs() {
       }
     });
 
-    form.addEventListener("submit", (event) => {
+    form.addEventListener("submit", async (event) => {
       event.preventDefault();
 
       const formData = new FormData(form);
@@ -598,18 +598,25 @@ function initContactDialogs() {
       const email = formData.get("email")?.toString().trim() || "";
       const subject = formData.get("subject")?.toString().trim() || "Kontakt über Portfolio";
       const message = formData.get("message")?.toString().trim() || "";
-      const body = [
-        "Hallo Tim,",
-        "",
-        message,
-        "",
-        "Kontaktangaben:",
-        `Name: ${name}`,
-        `E-Mail: ${email}`,
-      ].join("\n");
 
-      window.location.href = `mailto:tim.koch1@iu-study.org?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      dialog.close();
+      formData.set("name", name);
+      formData.set("email", email);
+      formData.set("subject", subject);
+      formData.set("message", message);
+      formData.set("_subject", subject);
+
+      setFormStatus(form, "");
+      setFormSubmitState(form, true);
+
+      try {
+        await sendForm(form, formData);
+        form.reset();
+        setFormStatus(form, "Danke, deine Nachricht wurde gesendet.", "success");
+      } catch {
+        setFormStatus(form, "Die Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut.", "error");
+      } finally {
+        setFormSubmitState(form, false);
+      }
     });
   });
 }
