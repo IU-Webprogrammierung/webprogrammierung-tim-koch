@@ -227,7 +227,7 @@ function createElement(tagName, attributes = {}, textContent = "") {
 }
 
 async function sendForm(form, formData) {
-  const endpoint = form.getAttribute("action");
+  const endpoint = form.dataset.formEndpoint;
 
   if (!endpoint) {
     throw new Error("Kein Formular-Endpunkt vorhanden.");
@@ -246,6 +246,17 @@ async function sendForm(form, formData) {
   }
 }
 
+function clearFormStatus(form) {
+  const status = form.querySelector("[data-form-status]");
+
+  if (!status) {
+    return;
+  }
+
+  status.textContent = "";
+  delete status.dataset.status;
+}
+
 function setFormStatus(form, message, type = "neutral") {
   const status = form.querySelector("[data-form-status]");
 
@@ -253,8 +264,22 @@ function setFormStatus(form, message, type = "neutral") {
     return;
   }
 
-  status.textContent = message;
+  status.replaceChildren(message);
   status.dataset.status = type;
+}
+
+function setFormFallbackStatus(form, message, fallbackLink) {
+  const status = form.querySelector("[data-form-status]");
+
+  if (!status) {
+    return;
+  }
+
+  const link = createElement("a", { href: fallbackLink }, "E-Mail stattdessen öffnen");
+
+  status.textContent = "";
+  status.dataset.status = "error";
+  status.append(message, " ", link);
 }
 
 function setFormSubmitState(form, isSending) {
@@ -270,6 +295,16 @@ function setFormSubmitState(form, isSending) {
 
   submitButton.disabled = isSending;
   submitButton.textContent = isSending ? "Wird gesendet..." : submitButton.dataset.defaultText;
+}
+
+function createMailtoLink(form, subject, body) {
+  const recipient = form.dataset.mailtoFallback;
+
+  if (!recipient) {
+    return "";
+  }
+
+  return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
 function createCertificateCard(certificate) {
@@ -548,6 +583,21 @@ function initBetaTestDialog() {
       .filter(Boolean)
       .join("\n") || "Keine weiteren Personen angegeben.";
     const subject = "Beta-Test Anmeldung PlanTeller";
+    const fallbackBody = [
+      "Hallo,",
+      "",
+      "ich möchte mich für den Beta-Test von PlanTeller anmelden.",
+      "",
+      `Name: ${name}`,
+      `E-Mail: ${email}`,
+      "",
+      "Weitere Personen:",
+      additionalPeople,
+      "",
+      "Viele Grüße",
+      name,
+    ].join("\n");
+    const fallbackLink = createMailtoLink(form, subject, fallbackBody);
 
     formData.set("name", name);
     formData.set("email", email);
@@ -556,7 +606,7 @@ function initBetaTestDialog() {
     formData.set("additionalPeople", additionalPeople);
     formData.set("_subject", subject);
 
-    setFormStatus(form, "");
+    clearFormStatus(form);
     setFormSubmitState(form, true);
 
     try {
@@ -565,7 +615,11 @@ function initBetaTestDialog() {
       peopleList.textContent = "";
       setFormStatus(form, "Danke, deine Anmeldung wurde gesendet.", "success");
     } catch {
-      setFormStatus(form, "Die Anmeldung konnte nicht gesendet werden. Bitte versuche es später erneut.", "error");
+      if (fallbackLink) {
+        setFormFallbackStatus(form, "Die Anmeldung konnte nicht gesendet werden.", fallbackLink);
+      } else {
+        setFormStatus(form, "Die Anmeldung konnte nicht gesendet werden. Bitte versuche es später erneut.", "error");
+      }
     } finally {
       setFormSubmitState(form, false);
     }
@@ -602,6 +656,16 @@ function initContactDialogs() {
       const email = formData.get("email")?.toString().trim() || "";
       const subject = formData.get("subject")?.toString().trim() || "Kontakt über Portfolio";
       const message = formData.get("message")?.toString().trim() || "";
+      const fallbackBody = [
+        "Hallo Tim,",
+        "",
+        message,
+        "",
+        "Kontaktangaben:",
+        `Name: ${name}`,
+        `E-Mail: ${email}`,
+      ].join("\n");
+      const fallbackLink = createMailtoLink(form, subject, fallbackBody);
 
       formData.set("name", name);
       formData.set("email", email);
@@ -609,7 +673,7 @@ function initContactDialogs() {
       formData.set("message", message);
       formData.set("_subject", subject);
 
-      setFormStatus(form, "");
+      clearFormStatus(form);
       setFormSubmitState(form, true);
 
       try {
@@ -617,7 +681,11 @@ function initContactDialogs() {
         form.reset();
         setFormStatus(form, "Danke, deine Nachricht wurde gesendet.", "success");
       } catch {
-        setFormStatus(form, "Die Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut.", "error");
+        if (fallbackLink) {
+          setFormFallbackStatus(form, "Die Nachricht konnte nicht gesendet werden.", fallbackLink);
+        } else {
+          setFormStatus(form, "Die Nachricht konnte nicht gesendet werden. Bitte versuche es später erneut.", "error");
+        }
       } finally {
         setFormSubmitState(form, false);
       }

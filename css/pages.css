@@ -349,6 +349,13 @@
   &[data-status="error"] {
     color: var(--color-text);
   }
+
+  a {
+    color: var(--color-text);
+    font-weight: 800;
+    text-decoration: underline;
+    text-underline-offset: 0.18em;
+  }
 }
 
 .form-label {
