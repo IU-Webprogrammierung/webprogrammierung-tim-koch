@@ -140,7 +140,12 @@
         </button>
       </form>
 
-      <form class="beta-form" data-beta-form>
+      <form
+        class="beta-form"
+        action="https://formspree.io/f/xqerklkr"
+        method="post"
+        data-beta-form
+        data-mailto-fallback="kochbuch_app@outlook.de">
         <h2 id="beta-dialog-title">Beta-Test für PlanTeller</h2>
         <p>
           PlanTeller befindet sich aktuell in der Testphase. Wenn du die App ausprobieren möchtest, kannst du dich hier für den Beta-Test vormerken lassen.
@@ -176,7 +181,8 @@
           <div class="additional-people-list" data-beta-people></div>
         </div>
 
-        <button class="button button-primary" type="submit">Anmeldung per E-Mail senden</button>
+        <button class="button button-primary" type="submit">Anmeldung senden</button>
+        <p class="form-status" data-form-status aria-live="polite"></p>
       </form>
     </dialog>
 
@@ -197,10 +203,15 @@
         </button>
       </form>
 
-      <form class="contact-form" data-contact-form>
+      <form
+        class="contact-form"
+        action="https://formspree.io/f/mzdnbvbz"
+        method="post"
+        data-contact-form
+        data-mailto-fallback="tim.koch1@iu-study.org">
         <h2 id="contact-dialog-title">Projektidee besprechen</h2>
         <p>
-          Schreib mir gern kurz, worum es geht. Beim Absenden wird dein Mailprogramm mit der vorbereiteten E-Mail geöffnet.
+          Schreib mir gern kurz, worum es geht. Das Formular wird direkt über die Website versendet.
         </p>
 
         <div class="form-field">
@@ -223,7 +234,8 @@
           <textarea id="contact-message" name="message" rows="5" required></textarea>
         </div>
 
-        <button class="button button-primary" type="submit">E-Mail vorbereiten</button>
+        <button class="button button-primary" type="submit">Nachricht senden</button>
+        <p class="form-status" data-form-status aria-live="polite"></p>
       </form>
     </dialog>
   </main>

@@ -333,6 +333,16 @@
   font-size: var(--font-size-small);
 }
 
+.form-status {
+  margin: 0;
+  color: var(--color-text-muted);
+  font-weight: 600;
+
+  &:empty {
+    display: none;
+  }
+}
+
 .form-label {
   margin: 0;
   color: var(--color-text);
