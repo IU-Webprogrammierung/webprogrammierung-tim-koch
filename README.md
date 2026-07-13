@@ -13,6 +13,12 @@ Für Phase 3 wird bewusst kein großes CSS- oder UI-Framework wie Bootstrap oder
 
 Externe Dienste oder kleine Bibliotheken werden nur eingesetzt, wenn sie einen klaren Zweck erfüllen. Geplant ist der gezielte Einsatz von Formspree für den Formularversand. Weitere Bibliotheken werden nur geprüft, wenn sie Barrierefreiheit, Wartbarkeit oder Bedienbarkeit nachweisbar verbessern.
 
+### Formularversand
+
+Der Formularversand wurde in Phase 3 von vorbereiteten `mailto:`-Links auf Formspree umgestellt. Das Kontaktformular und die PlanTeller-Beta-Anmeldung nutzen getrennte Formspree-Endpunkte, damit allgemeine Kontaktanfragen und App-Testanmeldungen sauber getrennt verarbeitet werden können.
+
+Die Formulare werden per JavaScript und `fetch()` gesendet. Während des Sendens wird der jeweilige Button deaktiviert, nach dem Versand wird eine Erfolgsmeldung im Dialog angezeigt. Wenn der Versand fehlschlägt, bleiben die Eingaben erhalten und es wird ein vorbereiteter E-Mail-Fallback angeboten.
+
 ## Phase 2:
 
 In Phase 2 wurde die Website gestalterisch und technisch ausgearbeitet. Im Fokus stehen responsives Design, eigene CSS-Struktur, einfache JavaScript-Interaktionen und eine bessere Nutzbarkeit auf verschiedenen Bildschirmgrößen.
