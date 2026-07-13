@@ -226,6 +226,52 @@ function createElement(tagName, attributes = {}, textContent = "") {
   return element;
 }
 
+async function sendForm(form, formData) {
+  const endpoint = form.getAttribute("action");
+
+  if (!endpoint) {
+    throw new Error("Kein Formular-Endpunkt vorhanden.");
+  }
+
+  const response = await fetch(endpoint, {
+    method: form.getAttribute("method") || "post",
+    body: formData,
+    headers: {
+      Accept: "application/json",
+    },
+  });
+
+  if (!response.ok) {
+    throw new Error("Formular konnte nicht gesendet werden.");
+  }
+}
+
+function setFormStatus(form, message, type = "neutral") {
+  const status = form.querySelector("[data-form-status]");
+
+  if (!status) {
+    return;
+  }
+
+  status.textContent = message;
+  status.dataset.status = type;
+}
+
+function setFormSubmitState(form, isSending) {
+  const submitButton = form.querySelector('button[type="submit"]');
+
+  if (!submitButton) {
+    return;
+  }
+
+  if (!submitButton.dataset.defaultText) {
+    submitButton.dataset.defaultText = submitButton.textContent.trim();
+  }
+
+  submitButton.disabled = isSending;
+  submitButton.textContent = isSending ? "Wird gesendet..." : submitButton.dataset.defaultText;
+}
+
 function createCertificateCard(certificate) {
   const item = createElement("li");
   const button = createElement("button", {
