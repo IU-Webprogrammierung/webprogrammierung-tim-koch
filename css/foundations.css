@@ -62,13 +62,13 @@
 }
 
 body[data-theme="dark"] {
-  --color-background: #0f1014;
-  --color-surface: #171820;
-  --color-surface-soft: #1f2028;
+  --color-background: #101116;
+  --color-surface: #181a22;
+  --color-surface-soft: #20232d;
   --color-text: #f7f7f9;
-  --color-text-muted: #c5c7d0;
-  --color-surface-muted: #242631;
-  --color-border: #3a3d4a;
+  --color-text-muted: #c9ccd6;
+  --color-surface-muted: #282b35;
+  --color-border: #444857;
   --color-primary: #f7f7f9;
   --color-primary-text: #111111;
   --color-focus: #8ab4ff;
@@ -258,16 +258,16 @@ p {
 body[data-theme="dark"] {
   .icon-burger-menu,
   .icon-case-round,
-  .icon-clapperboard,
-  .icon-code,
   .icon-email,
   .icon-github,
-  .icon-settings,
   .icon-square-academic,
-  .icon-user,
   .icon-user-minus,
   .icon-user-plus {
     filter: brightness(0) invert(1);
+  }
+
+  .icon-google-play {
+    filter: none;
   }
 }
 

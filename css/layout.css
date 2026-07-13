@@ -35,15 +35,35 @@
 
     .icon {
       display: inline-block;
+      position: relative;
       width: 2rem;
       height: 2rem;
       padding: 0.35rem;
       border-radius: 50%;
+      background-image: none;
+      filter: none;
+
+      &::before {
+        content: "";
+        position: absolute;
+        inset: 0.35rem;
+        background-color: var(--color-text);
+        mask-image: var(--icon-settings);
+        mask-position: center;
+        mask-repeat: no-repeat;
+        mask-size: contain;
+        /* stylelint-disable property-no-vendor-prefix -- Safari braucht den Präfix für maskierte SVG-Icons. */
+        -webkit-mask-image: var(--icon-settings);
+        -webkit-mask-position: center;
+        -webkit-mask-repeat: no-repeat;
+        -webkit-mask-size: contain;
+        /* stylelint-enable property-no-vendor-prefix */
+      }
     }
   }
 
   &[open] summary .icon {
-    background-color: var(--color-surface);
+    background-color: var(--color-surface-soft);
   }
 
   .container {
@@ -109,6 +129,12 @@ body.is-scrolled:not([data-contrast="high"]) {
 
   .site-header {
     border-color: color-mix(in srgb, var(--color-border) 74%, transparent);
+  }
+}
+
+body[data-theme="dark"].is-scrolled:not([data-contrast="high"]) {
+  [data-partial="partials/header.html"] {
+    box-shadow: 0 0.9rem 2.4rem rgba(0, 0, 0, 0.34);
   }
 }
 
