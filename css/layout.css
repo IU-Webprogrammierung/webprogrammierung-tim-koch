@@ -401,6 +401,14 @@ main > section {
   }
 }
 
+body[data-theme="dark"] {
+  .footer-icon-link:hover {
+    .icon {
+      filter: none;
+    }
+  }
+}
+
 .footer-copyright {
   grid-column: 1 / -1;
   margin: var(--space-medium) 0 0;
