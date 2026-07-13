@@ -159,6 +159,26 @@ function initMenuToggle() {
   });
 }
 
+function initHeaderScrollState() {
+  let ticking = false;
+
+  const updateScrollState = () => {
+    document.body.classList.toggle("is-scrolled", window.scrollY > 8);
+    ticking = false;
+  };
+
+  updateScrollState();
+
+  window.addEventListener("scroll", () => {
+    if (ticking) {
+      return;
+    }
+
+    ticking = true;
+    requestAnimationFrame(updateScrollState);
+  }, { passive: true });
+}
+
 // Videocontainer öffnen
 function initVideoDialogs() {
   const videoButtons = document.querySelectorAll(".video-card-button[aria-controls]");
@@ -739,6 +759,7 @@ async function initLayoutPartials() {
   markCurrentNavigationLink();
   initSettingsControls();
   initMenuToggle();
+  initHeaderScrollState();
 }
 
 initLayoutPartials().catch((error) => {

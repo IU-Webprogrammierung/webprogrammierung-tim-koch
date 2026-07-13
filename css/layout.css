@@ -94,6 +94,18 @@
 .site-header {
   border-bottom: 1px solid var(--color-border);
   background: var(--color-surface);
+  transition: background-color var(--transition-base), box-shadow var(--transition-base), border-color var(--transition-base);
+}
+
+body.is-scrolled:not([data-contrast="high"]) {
+  .site-header {
+    border-color: color-mix(in srgb, var(--color-border) 74%, transparent);
+    background: var(--color-header-glass);
+    box-shadow: 0 0.8rem 2rem rgba(3, 2, 19, 0.08);
+    backdrop-filter: blur(14px);
+    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari braucht den Präfix für den Glas-Effekt. */
+    -webkit-backdrop-filter: blur(14px);
+  }
 }
 
 .main-nav {
