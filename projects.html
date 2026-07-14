@@ -133,7 +133,7 @@
     </section>
 
     <!-- Anmeldung für die PlanTeller-Testphase -->
-    <dialog class="beta-dialog" id="beta-test-dialog" aria-labelledby="beta-dialog-title">
+    <dialog class="site-dialog beta-dialog" id="beta-test-dialog" aria-labelledby="beta-dialog-title" aria-describedby="beta-dialog-description">
       <form method="dialog" class="dialog-close-form">
         <button type="submit" aria-label="Beta-Anmeldung schließen">
           <span class="icon icon-close-light" aria-hidden="true"></span>
@@ -141,13 +141,13 @@
       </form>
 
       <form
-        class="beta-form"
+        class="dialog-content beta-form"
         method="post"
         data-beta-form
         data-form-endpoint="https://formspree.io/f/xqerklkr"
         data-mailto-fallback="kochbuch_app@outlook.de">
         <h2 id="beta-dialog-title">Beta-Test für PlanTeller</h2>
-        <p>
+        <p id="beta-dialog-description">
           PlanTeller befindet sich aktuell in der Testphase. Wenn du die App ausprobieren möchtest, kannst du dich hier für den Beta-Test vormerken lassen.
           Du erhältst dann alle Informationen und den Link zum Beta-Test zeitnah per E-Mail.
         </p>
@@ -182,7 +182,7 @@
         </div>
 
         <button class="button button-primary" type="submit">Anmeldung senden</button>
-        <p class="form-status" data-form-status aria-live="polite"></p>
+        <p class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true"></p>
       </form>
     </dialog>
 
@@ -196,7 +196,7 @@
     </section>
 
     <!-- Kontaktformular -->
-    <dialog class="contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title">
+    <dialog class="site-dialog contact-dialog" id="contact-dialog" aria-labelledby="contact-dialog-title" aria-describedby="contact-dialog-description">
       <form method="dialog" class="dialog-close-form">
         <button type="submit" aria-label="Kontaktformular schließen">
           <span class="icon icon-close-light" aria-hidden="true"></span>
@@ -204,13 +204,13 @@
       </form>
 
       <form
-        class="contact-form"
+        class="dialog-content contact-form"
         method="post"
         data-contact-form
         data-form-endpoint="https://formspree.io/f/mzdnbvbz"
         data-mailto-fallback="tim.koch1@iu-study.org">
         <h2 id="contact-dialog-title">Projektidee besprechen</h2>
-        <p>
+        <p id="contact-dialog-description">
           Schreib mir gern kurz, worum es geht. Das Formular wird direkt über die Website versendet.
         </p>
 
@@ -235,7 +235,7 @@
         </div>
 
         <button class="button button-primary" type="submit">Nachricht senden</button>
-        <p class="form-status" data-form-status aria-live="polite"></p>
+        <p class="form-status" data-form-status role="status" aria-live="polite" aria-atomic="true"></p>
       </form>
     </dialog>
   </main>

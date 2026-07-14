@@ -1,3 +1,4 @@
+// Einstellungen und gespeicherte Darstellungsoptionen
 const defaultSettings = {
   fontSize: 16,
   theme: "light",
@@ -6,6 +7,7 @@ const defaultSettings = {
 };
 
 const settingsStorageKey = "portfolio-settings";
+const dialogCloseFallbackDelay = 700;
 
 function loadSettings() {
   try {
@@ -101,6 +103,7 @@ function initSettingsControls() {
 
 applySettings(loadSettings());
 
+// Gemeinsame Seitenelemente aus Partials laden
 async function loadPartial(container) {
   const file = container.dataset.partial;
 
@@ -178,6 +181,7 @@ function initHeaderScrollState() {
   }, { passive: true });
 }
 
+// Gemeinsame Dialogsteuerung
 function prefersReducedMotion() {
   return document.body.dataset.motion === "reduced" || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 }
@@ -218,7 +222,7 @@ function closeDialogWithAnimation(dialog) {
     };
 
     dialog.addEventListener("transitionend", handleTransitionEnd);
-    fallbackTimer = window.setTimeout(finishClose, 420);
+    fallbackTimer = window.setTimeout(finishClose, dialogCloseFallbackDelay);
   });
 }
 
@@ -226,7 +230,7 @@ function initAnimatedDialogClosing() {
   document.addEventListener("submit", (event) => {
     const form = event.target;
 
-    if (!(form instanceof HTMLFormElement) || !form.matches(".dialog-close-form, .video-dialog > form, .certificate-dialog > form, .confirmation-dialog > form")) {
+    if (!(form instanceof HTMLFormElement) || !form.matches('.site-dialog form[method="dialog"]')) {
       return;
     }
 
@@ -295,7 +299,7 @@ function getDialogFromHash(selector) {
   return dialog?.matches(selector) ? dialog : null;
 }
 
-// Videocontainer öffnen
+// Videodialoge und Direktlinks
 function initVideoDialogs() {
   const videoButtons = document.querySelectorAll(".video-card-button[aria-controls]");
   const syncDialogWithHash = async () => {
@@ -348,6 +352,7 @@ function initVideoDialogs() {
   syncDialogWithHash();
 }
 
+// DOM- und Formularhilfen
 function createElement(tagName, attributes = {}, textContent = "") {
   const element = document.createElement(tagName);
 
@@ -435,6 +440,7 @@ function setFormSubmitState(form, isSending) {
 
   submitButton.disabled = isSending;
   submitButton.textContent = isSending ? "Wird gesendet..." : submitButton.dataset.defaultText;
+  form.setAttribute("aria-busy", String(isSending));
 }
 
 function playFormSuccessAnimation(form) {
@@ -454,14 +460,18 @@ function showConfirmationDialog(title, message) {
 
   if (!dialog) {
     dialog = createElement("dialog", {
-      class: "confirmation-dialog",
+      class: "site-dialog confirmation-dialog",
       id: "confirmation-dialog",
       "aria-labelledby": "confirmation-dialog-title",
+      "aria-describedby": "confirmation-dialog-description",
     });
 
-    const form = createElement("form", { method: "dialog" });
+    const form = createElement("form", {
+      class: "dialog-content confirmation-dialog-content",
+      method: "dialog",
+    });
     const heading = createElement("h2", { id: "confirmation-dialog-title" });
-    const text = createElement("p");
+    const text = createElement("p", { id: "confirmation-dialog-description" });
     const button = createElement("button", { class: "button button-primary", type: "submit" }, "Bestätigen");
 
     form.append(heading, text, button);
@@ -484,14 +494,16 @@ function createMailtoLink(form, subject, body) {
   return `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 }
 
+// Zertifikate aus den JSON-Daten aufbauen
 function createCertificateCard(certificate) {
+  const accessibleTitle = certificate.shortTitle || certificate.title;
   const item = createElement("li");
   const button = createElement("button", {
     class: "certificate-badge-link",
     type: "button",
     "aria-haspopup": "dialog",
     "aria-controls": `certificate-dialog-${certificate.id}`,
-    "aria-label": `${certificate.provider}-Zertifikat ${certificate.title} anzeigen`,
+    "aria-label": `${accessibleTitle}: Zertifikat von ${certificate.provider} anzeigen`,
   });
   const badge = createElement("img", {
     src: certificate.badge,
@@ -510,11 +522,15 @@ function createCertificateCard(certificate) {
 
 function createCertificateDialog(certificate) {
   const dialog = createElement("dialog", {
-    class: "certificate-dialog",
+    class: "site-dialog certificate-dialog",
     id: `certificate-dialog-${certificate.id}`,
     "aria-labelledby": `certificate-dialog-${certificate.id}-title`,
+    "aria-describedby": `certificate-dialog-${certificate.id}-description`,
   });
-  const form = createElement("form", { method: "dialog" });
+  const form = createElement("form", {
+    class: "dialog-close-form",
+    method: "dialog",
+  });
   const closeButton = createElement("button", {
     type: "submit",
     "aria-label": "Zertifikat schließen",
@@ -523,9 +539,9 @@ function createCertificateDialog(certificate) {
     class: "icon icon-close-light",
     "aria-hidden": "true",
   });
-  const content = createElement("div", { class: "certificate-dialog-content" });
+  const content = createElement("div", { class: "dialog-content certificate-dialog-content" });
   const title = createElement("h2", { id: `certificate-dialog-${certificate.id}-title` }, certificate.shortTitle || certificate.title);
-  const description = createElement("p", {}, certificate.description);
+  const description = createElement("p", { id: `certificate-dialog-${certificate.id}-description` }, certificate.description);
   const preview = createElement("figure", { class: "certificate-preview" });
   const previewImage = createElement("img", {
     src: certificate.preview || certificate.badge,
@@ -589,7 +605,11 @@ function showCertificateError() {
   }
 
   certificateList.textContent = "";
-  certificateList.append(createElement("li", { class: "certificate-error" }, "Zertifikate konnten nicht geladen werden."));
+  certificateList.append(createElement("li", {
+    class: "certificate-error",
+    role: "status",
+    "aria-atomic": "true",
+  }, "Zertifikate konnten nicht geladen werden."));
 }
 
 // Zertifikatsdialoge öffnen
@@ -616,7 +636,7 @@ function initCertificateDialogs() {
   });
 }
 
-// Beta-Anmeldung per E-Mail vorbereiten
+// Beta-Anmeldung versenden
 function initBetaTestDialog() {
   const betaButton = document.querySelector('[aria-controls="beta-test-dialog"]');
   const dialog = document.getElementById("beta-test-dialog");
@@ -825,6 +845,7 @@ function initBetaTestDialog() {
     formData.set("_subject", subject);
 
     clearFormStatus(form);
+    setFormStatus(form, "Anmeldung wird gesendet.");
     setFormSubmitState(form, true);
 
     try {
@@ -848,7 +869,7 @@ function initBetaTestDialog() {
   });
 }
 
-// Kontaktformular senden
+// Kontaktformular versenden
 function initContactDialogs() {
   const contactButtons = document.querySelectorAll('[aria-controls="contact-dialog"]');
 
@@ -896,6 +917,7 @@ function initContactDialogs() {
       formData.set("_subject", subject);
 
       clearFormStatus(form);
+      setFormStatus(form, "Nachricht wird gesendet.");
       setFormSubmitState(form, true);
 
       try {
@@ -919,11 +941,14 @@ function initContactDialogs() {
   });
 }
 
+// Teilen und ergänzende Seitenaktionen
 function initShareLinks() {
   const shareLinks = document.querySelectorAll(".video-share-link");
   const shareStatus = createElement("p", {
     class: "visually-hidden",
+    role: "status",
     "aria-live": "polite",
+    "aria-atomic": "true",
   });
 
   if (shareLinks.length) {
@@ -1011,6 +1036,7 @@ function initBackButtons() {
   });
 }
 
+// Anwendung initialisieren
 async function initLayoutPartials() {
   const partialContainers = document.querySelectorAll("[data-partial]");
 

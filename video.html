@@ -64,73 +64,79 @@
     </section>
 
     <!-- Videocontainer für die Wiedergabe -->
-    <dialog class="video-dialog" id="video-dialog-joggen" aria-labelledby="video-dialog-joggen-title">
-      <form method="dialog">
+    <dialog class="site-dialog video-dialog" id="video-dialog-joggen" aria-labelledby="video-dialog-joggen-title" aria-describedby="video-dialog-joggen-description">
+      <form method="dialog" class="dialog-close-form">
         <button type="submit" aria-label="Video schließen">
           <span class="icon icon-close-light" aria-hidden="true"></span>
         </button>
       </form>
 
-      <div class="video-player">
-        <video controls data-src="assets/videos/VideoJoggen.mp4" poster="assets/images/ThumbnailJoggen.webp" preload="none">
-          Dein Browser unterstützt das Video-Element nicht.
-        </video>
-      </div>
+      <div class="dialog-content video-dialog-content">
+        <div class="video-player">
+          <video controls data-src="assets/videos/VideoJoggen.mp4" poster="assets/images/ThumbnailJoggen.webp" preload="none">
+            Dein Browser unterstützt das Video-Element nicht.
+          </video>
+        </div>
 
-      <div class="video-dialog-header">
-        <h2 id="video-dialog-joggen-title">Kreatives Projekt</h2>
-        <a class="video-share-link" href="video.html#video-dialog-joggen" aria-label="Kreatives Projekt teilen oder verlinken">
-          <span class="icon icon-share-light" aria-hidden="true"></span>
-        </a>
+        <div class="video-dialog-header">
+          <h2 id="video-dialog-joggen-title">Kreatives Projekt</h2>
+          <a class="video-share-link" href="video.html#video-dialog-joggen" aria-label="Kreatives Projekt teilen oder verlinken">
+            <span class="icon icon-share-light" aria-hidden="true"></span>
+          </a>
+        </div>
+        <p id="video-dialog-joggen-description">Eine Alltagstätigkeit, filmisch erzählt mit Fokus auf Bildgestaltung, Schnitt und Stimmung.</p>
       </div>
-      <p>Eine Alltagstätigkeit, filmisch erzählt mit Fokus auf Bildgestaltung, Schnitt und Stimmung.</p>
     </dialog>
 
-    <dialog class="video-dialog" id="video-dialog-thailand" aria-labelledby="video-dialog-thailand-title">
-      <form method="dialog">
+    <dialog class="site-dialog video-dialog" id="video-dialog-thailand" aria-labelledby="video-dialog-thailand-title" aria-describedby="video-dialog-thailand-description">
+      <form method="dialog" class="dialog-close-form">
         <button type="submit" aria-label="Video schließen">
           <span class="icon icon-close-light" aria-hidden="true"></span>
         </button>
       </form>
 
-      <div class="video-player">
-        <video controls data-src="assets/videos/ThailandVideoCompressed.mp4" poster="assets/images/ThailandThumbnail.webp" preload="none">
-          Dein Browser unterstützt das Video-Element nicht.
-        </video>
-      </div>
+      <div class="dialog-content video-dialog-content">
+        <div class="video-player">
+          <video controls data-src="assets/videos/ThailandVideoCompressed.mp4" poster="assets/images/ThailandThumbnail.webp" preload="none">
+            Dein Browser unterstützt das Video-Element nicht.
+          </video>
+        </div>
 
-      <div class="video-dialog-header">
-        <h2 id="video-dialog-thailand-title">Thailand 2025</h2>
-        <a class="video-share-link" href="video.html#video-dialog-thailand" aria-label="Thailand-Video teilen oder verlinken">
-          <span class="icon icon-share-light" aria-hidden="true"></span>
-        </a>
+        <div class="video-dialog-header">
+          <h2 id="video-dialog-thailand-title">Thailand 2025</h2>
+          <a class="video-share-link" href="video.html#video-dialog-thailand" aria-label="Thailand-Video teilen oder verlinken">
+            <span class="icon icon-share-light" aria-hidden="true"></span>
+          </a>
+        </div>
+        <p id="video-dialog-thailand-description">Ein Einblick in meine Reise nach Thailand.</p>
       </div>
-      <p>Ein Einblick in meine Reise nach Thailand.</p>
     </dialog>
 
-    <dialog class="video-dialog" id="video-dialog-demo" aria-labelledby="video-dialog-demo-title">
-      <form method="dialog">
+    <dialog class="site-dialog video-dialog" id="video-dialog-demo" aria-labelledby="video-dialog-demo-title" aria-describedby="video-dialog-demo-description">
+      <form method="dialog" class="dialog-close-form">
         <button type="submit" aria-label="Video schließen">
           <span class="icon icon-close-light" aria-hidden="true"></span>
         </button>
       </form>
 
-      <div class="video-player">
-        <iframe
-          data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=SL_mUEBVTNc3Lg-K"
-          title="Demo-Video von YouTube"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
-          allowfullscreen>
-        </iframe>
-      </div>
+      <div class="dialog-content video-dialog-content">
+        <div class="video-player">
+          <iframe
+            data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=SL_mUEBVTNc3Lg-K"
+            title="Demo-Video von YouTube"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
+        </div>
 
-      <div class="video-dialog-header">
-        <h2 id="video-dialog-demo-title">Demo-Video</h2>
-        <a class="video-share-link" href="video.html#video-dialog-demo" aria-label="Demo-Video teilen oder verlinken">
-          <span class="icon icon-share-light" aria-hidden="true"></span>
-        </a>
+        <div class="video-dialog-header">
+          <h2 id="video-dialog-demo-title">Demo-Video</h2>
+          <a class="video-share-link" href="video.html#video-dialog-demo" aria-label="Demo-Video teilen oder verlinken">
+            <span class="icon icon-share-light" aria-hidden="true"></span>
+          </a>
+        </div>
+        <p id="video-dialog-demo-description">Ein Beispielvideo zur Demonstration einer späteren YouTube-Einbindung.</p>
       </div>
-      <p>Ein Beispielvideo zur Demonstration einer späteren YouTube-Einbindung.</p>
     </dialog>
   </main>
   <div data-partial="partials/footer.html"></div>
