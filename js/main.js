@@ -246,9 +246,68 @@ function initAnimatedDialogClosing() {
   });
 }
 
+function updateUrlHash(hash = "") {
+  const url = new URL(window.location.href);
+  url.hash = hash;
+  window.history.replaceState(window.history.state, "", url);
+}
+
+function openVideoDialog(dialog, updateUrl = false) {
+  if (!(dialog instanceof HTMLDialogElement) || typeof dialog.showModal !== "function" || dialog.open) {
+    return;
+  }
+
+  dialog.showModal();
+
+  if (updateUrl) {
+    updateUrlHash(dialog.id);
+  }
+
+  requestAnimationFrame(() => {
+    dialog.querySelectorAll("video[data-src]").forEach((video) => {
+      if (!video.src) {
+        video.src = video.dataset.src;
+        video.load();
+      }
+    });
+
+    dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {
+      iframe.src = iframe.dataset.src;
+    });
+  });
+}
+
+function getDialogFromHash(selector) {
+  if (!window.location.hash) {
+    return null;
+  }
+
+  let dialogId;
+
+  try {
+    dialogId = decodeURIComponent(window.location.hash.slice(1));
+  } catch {
+    return null;
+  }
+
+  const dialog = document.getElementById(dialogId);
+
+  return dialog?.matches(selector) ? dialog : null;
+}
+
 // Videocontainer öffnen
 function initVideoDialogs() {
   const videoButtons = document.querySelectorAll(".video-card-button[aria-controls]");
+  const syncDialogWithHash = async () => {
+    const hashDialog = getDialogFromHash(".video-dialog");
+    const openDialogs = document.querySelectorAll(".video-dialog[open]");
+
+    await Promise.all(Array.from(openDialogs, (dialog) => {
+      return dialog === hashDialog ? Promise.resolve() : closeDialogWithAnimation(dialog);
+    }));
+
+    openVideoDialog(hashDialog);
+  };
 
   videoButtons.forEach((button) => {
     const dialogId = button.getAttribute("aria-controls");
@@ -259,20 +318,7 @@ function initVideoDialogs() {
     }
 
     button.addEventListener("click", () => {
-      dialog.showModal();
-
-      requestAnimationFrame(() => {
-        dialog.querySelectorAll("video[data-src]").forEach((video) => {
-          if (!video.src) {
-            video.src = video.dataset.src;
-            video.load();
-          }
-        });
-
-        dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {
-          iframe.src = iframe.dataset.src;
-        });
-      });
+      openVideoDialog(dialog, true);
     });
 
     dialog.addEventListener("close", () => {
@@ -285,6 +331,10 @@ function initVideoDialogs() {
       dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {
         iframe.removeAttribute("src");
       });
+
+      if (getDialogFromHash(".video-dialog") === dialog) {
+        updateUrlHash();
+      }
     });
 
     dialog.addEventListener("click", (event) => {
@@ -293,6 +343,9 @@ function initVideoDialogs() {
       }
     });
   });
+
+  window.addEventListener("hashchange", syncDialogWithHash);
+  syncDialogWithHash();
 }
 
 function createElement(tagName, attributes = {}, textContent = "") {
@@ -575,6 +628,24 @@ function initBetaTestDialog() {
     return;
   }
 
+  const openBetaDialog = (updateUrl = false) => {
+    if (!dialog.open) {
+      dialog.showModal();
+    }
+
+    if (updateUrl) {
+      updateUrlHash(dialog.id);
+    }
+  };
+
+  const syncDialogWithHash = () => {
+    if (getDialogFromHash(".beta-dialog") === dialog) {
+      openBetaDialog();
+    } else if (dialog.open) {
+      closeDialogWithAnimation(dialog);
+    }
+  };
+
   const updatePersonNumbers = () => {
     if (!peopleList) {
       return;
@@ -677,7 +748,7 @@ function initBetaTestDialog() {
   };
 
   betaButton.addEventListener("click", () => {
-    dialog.showModal();
+    openBetaDialog(true);
   });
 
   addPersonButton?.addEventListener("click", addPersonFieldset);
@@ -687,6 +758,15 @@ function initBetaTestDialog() {
       closeDialogWithAnimation(dialog);
     }
   });
+
+  dialog.addEventListener("close", () => {
+    if (getDialogFromHash(".beta-dialog") === dialog) {
+      updateUrlHash();
+    }
+  });
+
+  window.addEventListener("hashchange", syncDialogWithHash);
+  syncDialogWithHash();
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -841,39 +921,77 @@ function initContactDialogs() {
 
 function initShareLinks() {
   const shareLinks = document.querySelectorAll(".video-share-link");
+  const shareStatus = createElement("p", {
+    class: "visually-hidden",
+    "aria-live": "polite",
+  });
+
+  if (shareLinks.length) {
+    document.body.append(shareStatus);
+  }
 
   shareLinks.forEach((link) => {
     let feedbackTimer;
     const defaultLabel = link.getAttribute("aria-label") || "Video teilen";
 
-    const showShareFeedback = () => {
+    const showShareFeedback = (message) => {
       window.clearTimeout(feedbackTimer);
-      link.classList.add("is-copied");
-      link.setAttribute("aria-label", "Link wurde kopiert");
+      link.dataset.shareFeedback = message;
+      link.classList.add("has-feedback");
+      link.setAttribute("aria-label", message);
+      shareStatus.textContent = message;
 
       feedbackTimer = window.setTimeout(() => {
-        link.classList.remove("is-copied");
+        link.classList.remove("has-feedback");
+        delete link.dataset.shareFeedback;
         link.setAttribute("aria-label", defaultLabel);
+        shareStatus.textContent = "";
       }, 1800);
     };
 
     link.addEventListener("click", async (event) => {
-      const shareUrl = new URL(link.getAttribute("href"), window.location.href).href;
-      const shareTitle = link.closest(".video-dialog")?.querySelector("h2")?.textContent || document.title;
+      const dialog = link.closest(".video-dialog");
+      const shareUrl = new URL(window.location.href);
+      const shareTitle = dialog?.querySelector("h2")?.textContent || document.title;
+      let nativeShareFailed = false;
+
+      if (dialog?.id) {
+        shareUrl.hash = dialog.id;
+      }
 
       if (navigator.share) {
         event.preventDefault();
-        await navigator.share({
-          title: shareTitle,
-          url: shareUrl,
-        });
-        return;
+
+        try {
+          await navigator.share({
+            title: shareTitle,
+            url: shareUrl.href,
+          });
+          return;
+        } catch (error) {
+          if (error.name === "AbortError") {
+            return;
+          }
+
+          nativeShareFailed = true;
+        }
       }
 
       if (navigator.clipboard) {
         event.preventDefault();
-        await navigator.clipboard.writeText(shareUrl);
-        showShareFeedback();
+
+        try {
+          await navigator.clipboard.writeText(shareUrl.href);
+          showShareFeedback("Link wurde kopiert");
+        } catch {
+          showShareFeedback("Link konnte nicht kopiert werden");
+        }
+
+        return;
+      }
+
+      if (nativeShareFailed) {
+        showShareFeedback("Teilen ist in diesem Browser nicht möglich");
       }
     });
   });

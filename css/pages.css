@@ -953,7 +953,7 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
   }
 
   &::after {
-    content: "Link kopiert";
+    content: attr(data-share-feedback);
     position: absolute;
     right: 0;
     bottom: calc(100% + 0.5rem);
@@ -972,7 +972,7 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
     transition: opacity var(--transition-base), transform var(--transition-base);
   }
 
-  &.is-copied::after {
+  &.has-feedback::after {
     opacity: 1;
     transform: translateY(0);
   }
