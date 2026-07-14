@@ -178,6 +178,74 @@ function initHeaderScrollState() {
   }, { passive: true });
 }
 
+function prefersReducedMotion() {
+  return document.body.dataset.motion === "reduced" || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function closeDialogWithAnimation(dialog) {
+  if (!dialog || !dialog.open) {
+    return Promise.resolve();
+  }
+
+  if (prefersReducedMotion()) {
+    dialog.close();
+    return Promise.resolve();
+  }
+
+  dialog.dataset.closing = "true";
+
+  return new Promise((resolve) => {
+    let didClose = false;
+    let fallbackTimer;
+
+    const finishClose = () => {
+      if (didClose) {
+        return;
+      }
+
+      didClose = true;
+      window.clearTimeout(fallbackTimer);
+      dialog.removeEventListener("transitionend", handleTransitionEnd);
+      dialog.close();
+      delete dialog.dataset.closing;
+      resolve();
+    };
+
+    const handleTransitionEnd = (event) => {
+      if (event.target === dialog) {
+        finishClose();
+      }
+    };
+
+    dialog.addEventListener("transitionend", handleTransitionEnd);
+    fallbackTimer = window.setTimeout(finishClose, 420);
+  });
+}
+
+function initAnimatedDialogClosing() {
+  document.addEventListener("submit", (event) => {
+    const form = event.target;
+
+    if (!(form instanceof HTMLFormElement) || !form.matches(".dialog-close-form, .video-dialog > form, .certificate-dialog > form, .confirmation-dialog > form")) {
+      return;
+    }
+
+    event.preventDefault();
+    closeDialogWithAnimation(form.closest("dialog"));
+  });
+
+  document.addEventListener("cancel", (event) => {
+    const dialog = event.target;
+
+    if (!(dialog instanceof HTMLDialogElement)) {
+      return;
+    }
+
+    event.preventDefault();
+    closeDialogWithAnimation(dialog);
+  });
+}
+
 // Videocontainer öffnen
 function initVideoDialogs() {
   const videoButtons = document.querySelectorAll(".video-card-button[aria-controls]");
@@ -221,7 +289,7 @@ function initVideoDialogs() {
 
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) {
-        dialog.close();
+        closeDialogWithAnimation(dialog);
       }
     });
   });
@@ -314,6 +382,43 @@ function setFormSubmitState(form, isSending) {
 
   submitButton.disabled = isSending;
   submitButton.textContent = isSending ? "Wird gesendet..." : submitButton.dataset.defaultText;
+}
+
+function playFormSuccessAnimation(form) {
+  if (prefersReducedMotion()) {
+    return Promise.resolve();
+  }
+
+  form.classList.add("is-submitted");
+
+  return new Promise((resolve) => {
+    window.setTimeout(resolve, 220);
+  });
+}
+
+function showConfirmationDialog(title, message) {
+  let dialog = document.getElementById("confirmation-dialog");
+
+  if (!dialog) {
+    dialog = createElement("dialog", {
+      class: "confirmation-dialog",
+      id: "confirmation-dialog",
+      "aria-labelledby": "confirmation-dialog-title",
+    });
+
+    const form = createElement("form", { method: "dialog" });
+    const heading = createElement("h2", { id: "confirmation-dialog-title" });
+    const text = createElement("p");
+    const button = createElement("button", { class: "button button-primary", type: "submit" }, "Bestätigen");
+
+    form.append(heading, text, button);
+    dialog.append(form);
+    document.body.append(dialog);
+  }
+
+  dialog.querySelector("h2").textContent = title;
+  dialog.querySelector("p").textContent = message;
+  dialog.showModal();
 }
 
 function createMailtoLink(form, subject, body) {
@@ -452,7 +557,7 @@ function initCertificateDialogs() {
 
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) {
-        dialog.close();
+        closeDialogWithAnimation(dialog);
       }
     });
   });
@@ -547,13 +652,27 @@ function initBetaTestDialog() {
     emailField.append(emailLabel, emailGroup, emailHint);
     removeButton.append(removeIcon, removeText);
     removeButton.addEventListener("click", () => {
-      fieldset.remove();
-      updatePersonNumbers();
-      addPersonButton?.focus();
+      const removeFieldset = () => {
+        fieldset.remove();
+        updatePersonNumbers();
+        addPersonButton?.focus();
+      };
+
+      if (prefersReducedMotion()) {
+        removeFieldset();
+        return;
+      }
+
+      fieldset.classList.add("is-removing");
+      fieldset.addEventListener("animationend", removeFieldset, { once: true });
     });
 
     fieldset.append(legend, removeButton, nameField, emailField);
     peopleList.append(fieldset);
+    fieldset.classList.add("is-entering");
+    fieldset.addEventListener("animationend", () => {
+      fieldset.classList.remove("is-entering");
+    }, { once: true });
     nameInput.focus();
   };
 
@@ -565,7 +684,7 @@ function initBetaTestDialog() {
 
   dialog.addEventListener("click", (event) => {
     if (event.target === dialog) {
-      dialog.close();
+      closeDialogWithAnimation(dialog);
     }
   });
 
@@ -630,9 +749,13 @@ function initBetaTestDialog() {
 
     try {
       await sendForm(form, formData);
+      await playFormSuccessAnimation(form);
       form.reset();
       peopleList.textContent = "";
-      setFormStatus(form, "Danke, deine Anmeldung wurde gesendet.", "success");
+      clearFormStatus(form);
+      await closeDialogWithAnimation(dialog);
+      form.classList.remove("is-submitted");
+      showConfirmationDialog("Anmeldung gesendet", "Danke, deine Anmeldung für den PlanTeller-Beta-Test wurde gesendet.");
     } catch {
       if (fallbackLink) {
         setFormFallbackStatus(form, "Die Anmeldung konnte nicht gesendet werden.", fallbackLink);
@@ -663,7 +786,7 @@ function initContactDialogs() {
 
     dialog.addEventListener("click", (event) => {
       if (event.target === dialog) {
-        dialog.close();
+        closeDialogWithAnimation(dialog);
       }
     });
 
@@ -697,8 +820,12 @@ function initContactDialogs() {
 
       try {
         await sendForm(form, formData);
+        await playFormSuccessAnimation(form);
         form.reset();
-        setFormStatus(form, "Danke, deine Nachricht wurde gesendet.", "success");
+        clearFormStatus(form);
+        await closeDialogWithAnimation(dialog);
+        form.classList.remove("is-submitted");
+        showConfirmationDialog("Nachricht gesendet", "Danke, deine Nachricht wurde gesendet. Ich melde mich bei dir.");
       } catch {
         if (fallbackLink) {
           setFormFallbackStatus(form, "Die Nachricht konnte nicht gesendet werden.", fallbackLink);
@@ -716,6 +843,20 @@ function initShareLinks() {
   const shareLinks = document.querySelectorAll(".video-share-link");
 
   shareLinks.forEach((link) => {
+    let feedbackTimer;
+    const defaultLabel = link.getAttribute("aria-label") || "Video teilen";
+
+    const showShareFeedback = () => {
+      window.clearTimeout(feedbackTimer);
+      link.classList.add("is-copied");
+      link.setAttribute("aria-label", "Link wurde kopiert");
+
+      feedbackTimer = window.setTimeout(() => {
+        link.classList.remove("is-copied");
+        link.setAttribute("aria-label", defaultLabel);
+      }, 1800);
+    };
+
     link.addEventListener("click", async (event) => {
       const shareUrl = new URL(link.getAttribute("href"), window.location.href).href;
       const shareTitle = link.closest(".video-dialog")?.querySelector("h2")?.textContent || document.title;
@@ -732,6 +873,7 @@ function initShareLinks() {
       if (navigator.clipboard) {
         event.preventDefault();
         await navigator.clipboard.writeText(shareUrl);
+        showShareFeedback();
       }
     });
   });
@@ -768,6 +910,7 @@ initLayoutPartials().catch((error) => {
 initVideoDialogs();
 initBetaTestDialog();
 initContactDialogs();
+initAnimatedDialogClosing();
 renderCertificates()
   .then(initCertificateDialogs)
   .catch((error) => {

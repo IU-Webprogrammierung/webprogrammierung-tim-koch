@@ -36,7 +36,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-large);
   background: var(--color-surface);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  transition: border-color var(--motion-duration-dialog) var(--motion-easing-soft-out), box-shadow var(--motion-duration-dialog) var(--motion-easing-soft-out), transform var(--motion-duration-dialog) var(--motion-easing-soft-out);
 
   .teaser-card-link {
     display: block;
@@ -119,7 +119,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-large);
   background: var(--color-surface);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  transition: border-color var(--motion-duration-dialog) var(--motion-easing-soft-out), box-shadow var(--motion-duration-dialog) var(--motion-easing-soft-out), transform var(--motion-duration-dialog) var(--motion-easing-soft-out);
 
   .work-card-link {
     display: block;
@@ -139,6 +139,7 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform var(--transition-base);
   }
 
   h3,
@@ -159,6 +160,13 @@
     margin-bottom: var(--space-large);
     color: var(--color-text);
     font-weight: 700;
+  }
+}
+
+.work-card:hover {
+  img,
+  video {
+    transform: scale(var(--motion-scale-subtle));
   }
 }
 
@@ -201,7 +209,7 @@
   border: 1px solid var(--color-border);
   border-radius: var(--radius-large);
   background: var(--color-surface);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  transition: border-color var(--motion-duration-dialog) var(--motion-easing-soft-out), box-shadow var(--motion-duration-dialog) var(--motion-easing-soft-out), transform var(--motion-duration-dialog) var(--motion-easing-soft-out);
 }
 
 .project-image {
@@ -215,8 +223,15 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform var(--transition-base);
   }
 
+}
+
+.project-card:hover {
+  .project-image img {
+    transform: scale(var(--motion-scale-subtle));
+  }
 }
 
 .project-content {
@@ -242,7 +257,8 @@
 .beta-dialog,
 .contact-dialog,
 .video-dialog,
-.certificate-dialog {
+.certificate-dialog,
+.confirmation-dialog {
   max-height: calc(100vh - 2rem);
   overflow: auto;
   border: 1px solid var(--color-border);
@@ -250,9 +266,46 @@
   padding: 0;
   background: var(--color-surface);
   box-shadow: var(--shadow-hover);
+  opacity: 0;
+  transform: translateY(0.75rem) scale(0.98);
+  transition: opacity var(--motion-duration-dialog) var(--motion-easing-soft-out), transform var(--motion-duration-dialog) var(--motion-easing-soft-out);
 
   &::backdrop {
     background: rgba(3, 2, 19, 0.76);
+    transition: opacity var(--transition-base), background var(--transition-base);
+  }
+
+  &[open] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  &[data-closing="true"] {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.98);
+
+    &::backdrop {
+      opacity: 0;
+    }
+  }
+}
+
+@starting-style {
+  .beta-dialog[open],
+  .contact-dialog[open],
+  .video-dialog[open],
+  .certificate-dialog[open],
+  .confirmation-dialog[open] {
+    opacity: 0;
+    transform: translateY(0.75rem) scale(0.98);
+  }
+
+  .beta-dialog[open]::backdrop,
+  .contact-dialog[open]::backdrop,
+  .video-dialog[open]::backdrop,
+  .certificate-dialog[open]::backdrop,
+  .confirmation-dialog[open]::backdrop {
+    opacity: 0;
   }
 }
 
@@ -264,6 +317,74 @@
 .video-dialog,
 .certificate-dialog {
   width: min(100% - 2rem, 920px);
+}
+
+.confirmation-dialog {
+  width: min(100% - 2rem, 30rem);
+
+  > form {
+    display: grid;
+    gap: var(--space-medium);
+    padding: var(--space-xl);
+  }
+
+  h2,
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    color: var(--color-text);
+    font-size: 1.35rem;
+    line-height: 1.2;
+  }
+
+  .button {
+    justify-self: start;
+    border: 0;
+    cursor: pointer;
+  }
+}
+
+.beta-dialog[open] .beta-form > *,
+.contact-dialog[open] .contact-form > *,
+.video-dialog[open] .video-player,
+.video-dialog[open] .video-dialog-header,
+.video-dialog[open] > p,
+.certificate-dialog[open] .certificate-dialog-content > *,
+.confirmation-dialog[open] form > * {
+  animation: dialog-content-reveal var(--motion-duration-playful) var(--motion-easing-soft-out) both;
+}
+
+.beta-dialog[open] .beta-form > :nth-child(2),
+.contact-dialog[open] .contact-form > :nth-child(2),
+.certificate-dialog[open] .certificate-dialog-content > :nth-child(2),
+.confirmation-dialog[open] form > :nth-child(2) {
+  animation-delay: 45ms;
+}
+
+.beta-dialog[open] .beta-form > :nth-child(n+3),
+.contact-dialog[open] .contact-form > :nth-child(n+3),
+.video-dialog[open] .video-dialog-header,
+.certificate-dialog[open] .certificate-dialog-content > :nth-child(n+3),
+.confirmation-dialog[open] form > :nth-child(3) {
+  animation-delay: 90ms;
+}
+
+.video-dialog[open] > p {
+  animation-delay: 120ms;
+}
+
+@keyframes dialog-content-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.35rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .dialog-close-form,
@@ -297,6 +418,67 @@
   .icon {
     width: 1.65rem;
     height: 1.65rem;
+    transition: transform var(--motion-duration-dialog) var(--motion-easing-soft-out);
+  }
+}
+
+.beta-dialog[open],
+.contact-dialog[open],
+.video-dialog[open],
+.certificate-dialog[open] {
+  .dialog-close-form .icon {
+    animation: close-icon-spin-in var(--motion-duration-dialog) var(--motion-easing-soft-out);
+  }
+
+  .dialog-close-form button:hover .icon {
+    animation: icon-hover-spin var(--motion-duration-playful) var(--motion-easing-playful);
+  }
+
+  &[data-closing="true"] {
+    .dialog-close-form .icon {
+      animation: close-icon-spin-out var(--motion-duration-dialog) var(--motion-easing-soft-out);
+    }
+  }
+}
+
+.video-dialog[open],
+.certificate-dialog[open] {
+  > form .icon {
+    animation: close-icon-spin-in var(--motion-duration-dialog) var(--motion-easing-soft-out);
+  }
+
+  > form button:hover .icon {
+    animation: icon-hover-spin var(--motion-duration-playful) var(--motion-easing-playful);
+  }
+
+  &[data-closing="true"] {
+    > form .icon {
+      animation: close-icon-spin-out var(--motion-duration-dialog) var(--motion-easing-soft-out);
+    }
+  }
+}
+
+@keyframes close-icon-spin-in {
+  from {
+    opacity: 0;
+    transform: scale(0.84);
+  }
+
+  to {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+}
+
+@keyframes close-icon-spin-out {
+  from {
+    opacity: 1;
+    transform: rotate(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: scale(0.84);
   }
 }
 
@@ -305,6 +487,12 @@
   display: grid;
   gap: var(--space-medium);
   padding: var(--space-xl);
+  transition: opacity var(--motion-duration-emphasis) var(--motion-easing-standard), transform var(--motion-duration-emphasis) var(--motion-easing-standard);
+
+  &.is-submitted {
+    opacity: 0;
+    transform: translateX(1.25rem);
+  }
 
   h2,
   p {
@@ -345,12 +533,15 @@
     background: var(--color-background);
     color: var(--color-text);
     font: inherit;
+    transition: border-color var(--transition-base), box-shadow var(--transition-base), background var(--transition-base);
   }
 
   input:focus,
   select:focus,
   textarea:focus {
     border-color: var(--color-focus);
+    box-shadow: 0 0 0 0.2rem color-mix(in srgb, var(--color-focus) 18%, transparent);
+    outline: none;
   }
 
   textarea {
@@ -409,7 +600,8 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
   .beta-dialog,
   .contact-dialog,
   .video-dialog,
-  .certificate-dialog {
+  .certificate-dialog,
+  .confirmation-dialog {
     &::backdrop {
       background: rgba(0, 0, 0, 0.72);
     }
@@ -486,10 +678,42 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
   padding: var(--space-medium);
   background: var(--color-surface-soft);
 
+  &.is-entering {
+    animation: additional-person-enter var(--motion-duration-playful) var(--motion-easing-soft-out) both;
+  }
+
+  &.is-removing {
+    animation: additional-person-remove var(--motion-duration-emphasis) var(--motion-easing-standard) both;
+  }
+
   legend {
     padding-inline: 0.25rem;
     color: var(--color-text);
     font-weight: 700;
+  }
+}
+
+@keyframes additional-person-enter {
+  from {
+    opacity: 0;
+    transform: translateY(0.5rem) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes additional-person-remove {
+  from {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  to {
+    opacity: 0;
+    transform: translateX(0.75rem) scale(0.98);
   }
 }
 
@@ -568,7 +792,7 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-large);
   background: var(--color-surface);
-  transition: border-color var(--transition-base), box-shadow var(--transition-base), transform var(--transition-base);
+  transition: border-color var(--motion-duration-dialog) var(--motion-easing-soft-out), box-shadow var(--motion-duration-dialog) var(--motion-easing-soft-out), transform var(--motion-duration-dialog) var(--motion-easing-soft-out);
 
   h3 {
     margin: var(--space-large) var(--space-large) var(--space-small);
@@ -598,7 +822,21 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
   }
 
   .video-thumbnail::after {
-    transform: translate(-50%, -50%) scale(1.06);
+    animation: play-icon-breathe 2600ms ease-in-out infinite;
+  }
+}
+
+@keyframes play-icon-breathe {
+  0% {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) scale(1.18);
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(1);
   }
 }
 
@@ -608,8 +846,16 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
 .video-card {
   &:hover {
     border-color: var(--color-text-muted);
-    box-shadow: var(--shadow-card);
-    transform: translateY(-3px);
+    box-shadow: var(--shadow-card-soft);
+    transform: translateY(var(--motion-lift-small));
+  }
+}
+
+.video-card {
+  &:has(.video-card-button:focus-visible) {
+    border-color: var(--color-text-muted);
+    box-shadow: var(--shadow-card-soft);
+    transform: translateY(var(--motion-lift-small));
   }
 }
 
@@ -644,13 +890,15 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
     background-size: 3rem 3rem;
     opacity: 0;
     transform: translate(-50%, -50%);
-    transition: opacity var(--transition-base), transform var(--transition-base);
+    transition: opacity var(--transition-base);
+    will-change: transform;
   }
 
   img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform var(--transition-base);
   }
 }
 
@@ -690,6 +938,7 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
 
 .video-share-link {
   display: inline-grid;
+  position: relative;
   width: 2.75rem;
   height: 2.75rem;
   place-items: center;
@@ -701,6 +950,31 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
 
   &:hover {
     background: rgba(3, 2, 19, 0.92);
+  }
+
+  &::after {
+    content: "Link kopiert";
+    position: absolute;
+    right: 0;
+    bottom: calc(100% + 0.5rem);
+    width: max-content;
+    max-width: 10rem;
+    border-radius: var(--radius-medium);
+    padding: 0.35rem 0.55rem;
+    background: var(--color-primary);
+    color: var(--color-primary-text);
+    font-size: var(--font-size-small);
+    font-weight: 700;
+    line-height: 1.2;
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(0.25rem);
+    transition: opacity var(--transition-base), transform var(--transition-base);
+  }
+
+  &.is-copied::after {
+    opacity: 1;
+    transform: translateY(0);
   }
 
   .icon {
@@ -822,7 +1096,7 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
 
   &:hover {
     border-color: var(--color-text-muted);
-    transform: translateY(-2px);
+    transform: translateY(var(--motion-lift-small));
     box-shadow: var(--shadow-card);
   }
 
@@ -831,6 +1105,13 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
     height: 100%;
     min-height: 0;
     object-fit: contain;
+    transition: transform var(--transition-base);
+  }
+}
+
+.certificate-badge-link:hover {
+  img {
+    transform: scale(var(--motion-scale-subtle));
   }
 }
 
@@ -1072,6 +1353,11 @@ body[data-theme="dark"]:not([data-contrast="high"]) {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    transition: transform var(--motion-duration-playful) var(--motion-easing-playful);
+  }
+
+  &:hover img {
+    transform: translateY(var(--motion-lift-small)) rotate(-1deg) scale(1.01);
   }
 }
 
