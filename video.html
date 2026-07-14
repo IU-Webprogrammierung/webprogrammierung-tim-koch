@@ -7,6 +7,7 @@
   <meta name="description" content="Videografie von Tim Koch.">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Inter/Inter-Portfolio.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/images/joggen-thumbnail-800.avif" as="image" type="image/avif" fetchpriority="high" imagesrcset="assets/images/joggen-thumbnail-480.avif 480w, assets/images/joggen-thumbnail-800.avif 800w, assets/images/joggen-thumbnail-1200.avif 1200w" imagesizes="(min-width: 1472px) 464px, (min-width: 1024px) calc((100vw - 5rem) / 3), (min-width: 768px) calc((100vw - 3.5rem) / 2), calc(100vw - 2rem)">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -36,7 +37,23 @@
 
         <article class="video-card">
           <figure class="video-thumbnail">
-            <img src="assets/images/ThumbnailJoggen.webp" alt="Vorschau des Videos über Joggen und Alltag" fetchpriority="high">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="assets/images/joggen-thumbnail-480.avif 480w, assets/images/joggen-thumbnail-800.avif 800w, assets/images/joggen-thumbnail-1200.avif 1200w"
+                sizes="(min-width: 1472px) 464px, (min-width: 1024px) calc((100vw - 5rem) / 3), (min-width: 768px) calc((100vw - 3.5rem) / 2), calc(100vw - 2rem)">
+              <source
+                type="image/webp"
+                srcset="assets/images/joggen-thumbnail-480.webp 480w, assets/images/joggen-thumbnail-800.webp 800w, assets/images/joggen-thumbnail-1200.webp 1200w"
+                sizes="(min-width: 1472px) 464px, (min-width: 1024px) calc((100vw - 5rem) / 3), (min-width: 768px) calc((100vw - 3.5rem) / 2), calc(100vw - 2rem)">
+              <img
+                src="assets/images/joggen-thumbnail-800.webp"
+                width="1200"
+                height="675"
+                alt="Vorschau des Videos über Joggen und Alltag"
+                fetchpriority="high"
+                decoding="async">
+            </picture>
           </figure>
           <h3>Kreatives Projekt</h3>
           <p>Eine Alltagstätigkeit, filmisch erzählt mit Fokus auf Bildgestaltung, Schnitt und Stimmung.</p>
@@ -45,7 +62,23 @@
 
         <article class="video-card">
           <figure class="video-thumbnail">
-            <img src="assets/images/ThailandThumbnail.webp" alt="Vorschau des Videos Thailand 2025">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="assets/images/thailand-thumbnail-480.avif 480w, assets/images/thailand-thumbnail-800.avif 800w, assets/images/thailand-thumbnail-1200.avif 1200w"
+                sizes="(min-width: 1472px) 464px, (min-width: 1024px) calc((100vw - 5rem) / 3), (min-width: 768px) calc((100vw - 3.5rem) / 2), calc(100vw - 2rem)">
+              <source
+                type="image/webp"
+                srcset="assets/images/thailand-thumbnail-480.webp 480w, assets/images/thailand-thumbnail-800.webp 800w, assets/images/thailand-thumbnail-1200.webp 1200w"
+                sizes="(min-width: 1472px) 464px, (min-width: 1024px) calc((100vw - 5rem) / 3), (min-width: 768px) calc((100vw - 3.5rem) / 2), calc(100vw - 2rem)">
+              <img
+                src="assets/images/thailand-thumbnail-800.webp"
+                width="1200"
+                height="675"
+                alt="Vorschau des Videos Thailand 2025"
+                loading="lazy"
+                decoding="async">
+            </picture>
           </figure>
           <h3>Thailand 2025</h3>
           <p>Ein Einblick in meine Reise nach Thailand.</p>
@@ -54,7 +87,23 @@
 
         <article class="video-card">
           <figure class="video-thumbnail">
-            <img src="https://i.ytimg.com/vi_webp/dQw4w9WgXcQ/hqdefault.webp" alt="Vorschau des Demo-Videos von YouTube">
+            <picture>
+              <source
+                type="image/avif"
+                srcset="assets/images/youtube-demo-480.avif 480w, assets/images/youtube-demo-800.avif 800w, assets/images/youtube-demo-1200.avif 1200w"
+                sizes="(min-width: 1472px) 464px, (min-width: 1024px) calc((100vw - 5rem) / 3), (min-width: 768px) calc((100vw - 3.5rem) / 2), calc(100vw - 2rem)">
+              <source
+                type="image/webp"
+                srcset="assets/images/youtube-demo-480.webp 480w, assets/images/youtube-demo-800.webp 800w, assets/images/youtube-demo-1200.webp 1200w"
+                sizes="(min-width: 1472px) 464px, (min-width: 1024px) calc((100vw - 5rem) / 3), (min-width: 768px) calc((100vw - 3.5rem) / 2), calc(100vw - 2rem)">
+              <img
+                src="assets/images/youtube-demo-800.webp"
+                width="1200"
+                height="675"
+                alt="Vorschau des Demo-Videos von YouTube"
+                loading="lazy"
+                decoding="async">
+            </picture>
           </figure>
           <h3>Demo-Video</h3>
           <p>Ein Beispielvideo zur Demonstration einer späteren YouTube-Einbindung.</p>
@@ -73,7 +122,7 @@
 
       <div class="dialog-content video-dialog-content">
         <div class="video-player">
-          <video controls data-src="assets/videos/VideoJoggen.mp4" poster="assets/images/ThumbnailJoggen.webp" preload="none">
+          <video controls data-src="assets/videos/VideoJoggen.mp4" poster="assets/images/joggen-thumbnail-1200.webp" preload="none">
             Dein Browser unterstützt das Video-Element nicht.
           </video>
         </div>
@@ -97,7 +146,7 @@
 
       <div class="dialog-content video-dialog-content">
         <div class="video-player">
-          <video controls data-src="assets/videos/ThailandVideoCompressed.mp4" poster="assets/images/ThailandThumbnail.webp" preload="none">
+          <video controls data-src="assets/videos/ThailandVideoCompressed.mp4" poster="assets/images/thailand-poster-900.webp" preload="none">
             Dein Browser unterstützt das Video-Element nicht.
           </video>
         </div>

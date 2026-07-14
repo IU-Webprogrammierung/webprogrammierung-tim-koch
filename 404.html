@@ -7,7 +7,7 @@
   <meta name="description" content="Die angeforderte Seite wurde nicht gefunden.">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Inter/Inter-Portfolio.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="preload" href="assets/images/404Projekt.webp" as="image" type="image/webp" fetchpriority="high" imagesrcset="assets/images/404Projekt-576.webp 576w, assets/images/404Projekt.webp 665w" imagesizes="(min-width: 768px) 576px, calc(100vw - 2rem)">
+  <link rel="preload" href="assets/images/404-projekt-800.avif" as="image" type="image/avif" fetchpriority="high" imagesrcset="assets/images/404-projekt-480.avif 480w, assets/images/404-projekt-800.avif 800w, assets/images/404-projekt-1200.avif 1200w" imagesizes="(min-width: 768px) 576px, calc(100vw - 2rem)">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -23,15 +23,23 @@
     <section class="error-page" aria-labelledby="error-title">
       <div class="container">
         <figure class="error-illustration">
-          <img
-            src="assets/images/404Projekt.webp"
-            srcset="assets/images/404Projekt-576.webp 576w, assets/images/404Projekt.webp 665w"
-            sizes="(min-width: 768px) 576px, calc(100vw - 2rem)"
-            width="665"
-            height="508"
-            alt="404-Illustration mit kleinen Dinosauriern"
-            fetchpriority="high"
-            decoding="async">
+          <picture>
+            <source
+              type="image/avif"
+              srcset="assets/images/404-projekt-480.avif 480w, assets/images/404-projekt-800.avif 800w, assets/images/404-projekt-1200.avif 1200w"
+              sizes="(min-width: 768px) 576px, calc(100vw - 2rem)">
+            <source
+              type="image/webp"
+              srcset="assets/images/404-projekt-480.webp 480w, assets/images/404-projekt-800.webp 800w, assets/images/404-projekt-1200.webp 1200w"
+              sizes="(min-width: 768px) 576px, calc(100vw - 2rem)">
+            <img
+              src="assets/images/404-projekt-800.webp"
+              width="1200"
+              height="916"
+              alt="404-Illustration mit kleinen Dinosauriern"
+              fetchpriority="high"
+              decoding="async">
+          </picture>
         </figure>
 
         <h1 id="error-title">Seite nicht gefunden</h1>

@@ -7,6 +7,7 @@
   <meta name="description" content="Über Tim Koch.">
   <link rel="icon" href="assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="preload" href="assets/fonts/Inter/Inter-Portfolio.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/images/profilbild-800.avif" as="image" type="image/avif" fetchpriority="high" imagesrcset="assets/images/profilbild-480.avif 480w, assets/images/profilbild-800.avif 800w, assets/images/profilbild-1200.avif 1200w" imagesizes="(min-width: 1024px) 400px, (min-width: 768px) 40vw, min(20rem, calc(100vw - 2rem))">
   <link rel="stylesheet" href="css/style.css">
   <script src="js/main.js" defer></script>
 </head>
@@ -22,7 +23,23 @@
     <section class="about-hero" aria-labelledby="about-title">
       <div class="container">
         <figure class="profile-image">
-          <img src="assets/images/Profilbild.webp" alt="Porträtfoto von Tim Koch" fetchpriority="high">
+          <picture>
+            <source
+              type="image/avif"
+              srcset="assets/images/profilbild-480.avif 480w, assets/images/profilbild-800.avif 800w, assets/images/profilbild-1200.avif 1200w"
+              sizes="(min-width: 1024px) 400px, (min-width: 768px) 40vw, min(20rem, calc(100vw - 2rem))">
+            <source
+              type="image/webp"
+              srcset="assets/images/profilbild-480.webp 480w, assets/images/profilbild-800.webp 800w, assets/images/profilbild-1200.webp 1200w"
+              sizes="(min-width: 1024px) 400px, (min-width: 768px) 40vw, min(20rem, calc(100vw - 2rem))">
+            <img
+              src="assets/images/profilbild-800.webp"
+              width="1200"
+              height="1500"
+              alt="Porträtfoto von Tim Koch"
+              fetchpriority="high"
+              decoding="async">
+          </picture>
         </figure>
 
         <div class="about-text">

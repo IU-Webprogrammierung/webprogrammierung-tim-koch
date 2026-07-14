@@ -508,6 +508,10 @@ function createCertificateCard(certificate) {
   const badge = createElement("img", {
     src: certificate.badge,
     alt: certificate.badgeAlt,
+    width: certificate.badgeWidth,
+    height: certificate.badgeHeight,
+    loading: "lazy",
+    decoding: "async",
   });
 
   button.append(badge);
@@ -546,7 +550,10 @@ function createCertificateDialog(certificate) {
   const previewImage = createElement("img", {
     src: certificate.preview || certificate.badge,
     alt: certificate.previewAlt || `Vorschau des Zertifikats ${certificate.title}`,
+    width: certificate.previewWidth || certificate.badgeWidth,
+    height: certificate.previewHeight || certificate.badgeHeight,
     loading: "lazy",
+    decoding: "async",
   });
   const actions = createElement("div", { class: "certificate-dialog-actions" });
   const pdfLink = createElement("a", {

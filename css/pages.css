@@ -170,6 +170,17 @@
   }
 }
 
+.work-card figure,
+.project-image,
+.video-thumbnail,
+.profile-image,
+.error-illustration {
+  > picture {
+    width: 100%;
+    height: 100%;
+  }
+}
+
 /* Projektseite */
 .page-hero {
   text-align: center;

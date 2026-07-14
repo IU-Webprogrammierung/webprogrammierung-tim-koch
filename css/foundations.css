@@ -171,6 +171,10 @@ iframe {
   height: auto;
 }
 
+picture {
+  display: block;
+}
+
 /* Links und Formulare */
 a {
   color: inherit;
