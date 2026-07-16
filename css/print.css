@@ -1,0 +1,282 @@
+@page {
+  size: a4 portrait;
+  margin: 13mm 15mm;
+}
+
+@media print {
+  *,
+  *::before,
+  *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    color: #000000;
+    background: #ffffff;
+    font-size: 10pt !important;
+    print-color-adjust: exact;
+    /* stylelint-disable-next-line property-no-vendor-prefix -- Safari benötigt den Präfix für verlässliche Druckfarben. */
+    -webkit-print-color-adjust: exact;
+  }
+
+  body {
+    min-height: auto;
+    margin: 0;
+    color: #000000;
+    background: #ffffff;
+    line-height: 1.35;
+  }
+
+  body > [data-partial],
+  dialog,
+  .print-button {
+    display: none !important;
+  }
+
+  .print-only {
+    display: block;
+  }
+
+  main {
+    width: 100%;
+  }
+
+  main > section {
+    margin: 0 0 6mm;
+    padding: 0;
+  }
+
+  .container {
+    width: 100%;
+    max-width: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  h1,
+  h2,
+  h3 {
+    color: #000000;
+    break-after: avoid-page;
+  }
+
+  h1 {
+    margin-bottom: 3mm;
+    font-size: 18pt;
+  }
+
+  h2 {
+    margin-bottom: 3mm !important;
+    font-size: 14pt;
+    text-align: left !important;
+  }
+
+  h3 {
+    font-size: 10.5pt;
+  }
+
+  p,
+  li {
+    color: #1f1f1f;
+    orphans: 3;
+    widows: 3;
+  }
+
+  a {
+    color: #000000;
+    text-decoration: none;
+  }
+
+  .print-heading {
+    margin-bottom: 7mm;
+    border-bottom: 1px solid #777777;
+    padding-bottom: 4mm;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  .print-name {
+    color: #000000;
+    font-size: 24pt;
+    font-weight: 800;
+    line-height: 1.1;
+  }
+
+  .print-contact {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2mm;
+    margin-top: 1.5mm !important;
+    font-size: 8.5pt;
+  }
+
+  .about-hero {
+    break-inside: avoid-page;
+
+    .container {
+      display: grid;
+      grid-template-columns: 34mm minmax(0, 1fr);
+      align-items: start;
+      gap: 7mm;
+    }
+  }
+
+  .profile-image {
+    width: 34mm;
+    height: 42.5mm;
+    margin: 0;
+    border: 1px solid #b7b7b7;
+    border-radius: 2mm;
+  }
+
+  .about-text {
+    max-width: none;
+
+    p {
+      margin-bottom: 2mm;
+      font-size: 9pt;
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .skills-section,
+  .certificates-section,
+  .timeline-section,
+  .interests-section {
+    break-inside: avoid-page;
+  }
+
+  .skills-section {
+    .tag-list {
+      justify-content: flex-start;
+      gap: 1.5mm;
+
+      li {
+        border: 1px solid #a7a7a7;
+        border-radius: 999px;
+        padding: 0.6mm 2mm;
+        background: transparent;
+        color: #000000;
+        font-size: 8pt;
+      }
+    }
+  }
+
+  .certificate-intro {
+    max-width: none !important;
+    margin: 0 0 2.5mm !important;
+    font-size: 8.5pt;
+    text-align: left !important;
+  }
+
+  .certificate-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    justify-content: start;
+    gap: 1.5mm 7mm;
+
+    li {
+      display: block;
+      break-inside: avoid;
+    }
+  }
+
+  .certificate-badge-link {
+    display: block;
+    width: auto;
+    aspect-ratio: auto;
+    border: 0;
+    border-radius: 0;
+    padding: 0;
+    background: transparent;
+    color: #000000;
+    text-align: left;
+
+    img {
+      display: none;
+    }
+  }
+
+  .certificate-title {
+    max-width: none;
+    color: #000000;
+    font-size: 8.5pt;
+    text-align: left;
+
+    &::before {
+      content: "• ";
+    }
+  }
+
+  .timeline-list {
+    > li {
+      break-inside: avoid-page;
+      padding: 0 0 3mm;
+
+      &:not(:last-child) {
+        padding-bottom: 3mm;
+
+        &::before {
+          content: none;
+        }
+      }
+    }
+  }
+
+  .timeline-item {
+    display: grid;
+    grid-template-columns: 28mm minmax(0, 1fr);
+    column-gap: 4mm;
+
+    h3 {
+      grid-column: 2;
+      margin: 0 0 0.5mm;
+    }
+  }
+
+  .timeline-date {
+    grid-row: 1 / span 2;
+    margin: 0;
+    color: #000000;
+    font-size: 8.5pt;
+  }
+
+  .timeline-description {
+    grid-column: 2;
+    margin: 0;
+    font-size: 8.5pt;
+  }
+
+  .timeline-icon {
+    display: none;
+  }
+
+  .interests-section {
+    .container {
+      border: 0;
+      border-radius: 0;
+      padding: 0;
+      background: transparent;
+    }
+
+    p {
+      margin-bottom: 2mm;
+      font-size: 8.5pt;
+    }
+
+    ul {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1mm 8mm;
+      color: #1f1f1f;
+      font-size: 8.5pt;
+    }
+  }
+}

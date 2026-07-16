@@ -9,6 +9,7 @@
   <link rel="preload" href="assets/fonts/Inter/Inter-Portfolio.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/images/profilbild-800.avif" as="image" type="image/avif" fetchpriority="high" imagesrcset="assets/images/profilbild-480.avif 480w, assets/images/profilbild-800.avif 800w, assets/images/profilbild-1200.avif 1200w" imagesizes="(min-width: 1024px) 400px, (min-width: 768px) 40vw, min(20rem, calc(100vw - 2rem))">
   <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/print.css" media="print">
   <script src="js/main.js" defer></script>
 </head>
 
@@ -19,6 +20,16 @@
 
   <!-- Seiteninhalt -->
   <main id="main-content">
+    <div class="print-heading print-only">
+      <p class="print-name">Tim Koch</p>
+      <p>Medieninformatik · Webentwicklung · Prozessautomatisierung</p>
+      <p class="print-contact">
+        <a href="mailto:tim.koch1@iu-study.org">tim.koch1@iu-study.org</a>
+        <span aria-hidden="true">·</span>
+        <a href="https://github.com/tim-koch/">github.com/tim-koch</a>
+      </p>
+    </div>
+
     <!-- Profilbereich -->
     <section class="about-hero" aria-labelledby="about-title">
       <div class="container">
@@ -56,6 +67,10 @@
             Mich reizt es, einfache Dinge neu zu denken, Lücken zu erkennen und Lösungen zu bauen, die verständlich, nützlich und technisch zeitgemäß sind.
             Mein Ziel ist es, Projekte strukturiert voranzubringen und sie mit einem Blick für Gestaltung und Funktion umzusetzen.
           </p>
+          <button class="button button-secondary print-button" type="button" data-print-page>
+            <span class="icon icon-print" aria-hidden="true"></span>
+            Druckansicht öffnen
+          </button>
         </div>
       </div>
     </section>

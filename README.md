@@ -19,6 +19,10 @@ Der Formularversand wurde in Phase 3 von vorbereiteten `mailto:`-Links auf Forms
 
 Die Formulare werden per JavaScript und `fetch()` gesendet. Während des Sendens wird der jeweilige Button deaktiviert, nach dem Versand wird eine Erfolgsmeldung im Dialog angezeigt. Wenn der Versand fehlschlägt, bleiben die Eingaben erhalten und es wird ein vorbereiteter E-Mail-Fallback angeboten.
 
+### Druckansicht
+
+Die Über-mich-Seite besitzt eine eigene Druckansicht, die über einen sichtbaren Button und die Druckfunktion des Browsers geöffnet werden kann. Eine ausschließlich für den Druck geladene `print.css` bereitet Profil, Skills, Zertifikate, Werdegang und Interessen als kompakte A4-Seite auf. Navigation, Einstellungen, Footer, Dialoge und Bedienelemente werden beim Drucken ausgeblendet. Seitenumbrüche, Schriftgrößen und Spaltenaufteilung sind gezielt für eine gut lesbare PDF- oder Papierausgabe angepasst.
+
 ## Phase 2:
 
 In Phase 2 wurde die Website gestalterisch und technisch ausgearbeitet. Im Fokus stehen responsives Design, eigene CSS-Struktur, einfache JavaScript-Interaktionen und eine bessere Nutzbarkeit auf verschiedenen Bildschirmgrößen.
@@ -65,6 +69,7 @@ Die Website besteht aktuell aus folgenden Seiten:
 │   ├── foundations.css
 │   ├── layout.css
 │   ├── pages.css
+│   ├── print.css
 │   ├── responsive.css
 │   └── style.css
 ├── js/

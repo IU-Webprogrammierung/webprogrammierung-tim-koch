@@ -87,6 +87,10 @@
   clip-path: inset(50%);
 }
 
+.print-only {
+  display: none;
+}
+
 .settings-title {
   margin-bottom: 0;
   color: var(--color-text);

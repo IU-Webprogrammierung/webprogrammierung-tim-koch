@@ -1043,6 +1043,16 @@ function initBackButtons() {
   });
 }
 
+function initPrintButtons() {
+  const printButtons = document.querySelectorAll("[data-print-page]");
+
+  printButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      window.print();
+    });
+  });
+}
+
 // Anwendung initialisieren
 async function initLayoutPartials() {
   const partialContainers = document.querySelectorAll("[data-partial]");
@@ -1070,3 +1080,4 @@ renderCertificates()
   });
 initShareLinks();
 initBackButtons();
+initPrintButtons();

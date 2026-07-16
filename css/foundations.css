@@ -67,6 +67,7 @@
   --icon-github: url("../assets/icons/GitHub.svg");
   --icon-google-play: url("../assets/icons/Google-G-Logo.svg");
   --icon-play-light: url("../assets/icons/play-button-hell.svg");
+  --icon-print: url("../assets/icons/print.svg");
   --icon-reset: url("../assets/icons/reset.svg");
   --icon-settings: url("../assets/icons/set-up.svg");
   --icon-share-light: url("../assets/icons/square-share-hell.svg");
@@ -261,6 +262,10 @@ p {
   background-image: var(--icon-google-play);
 }
 
+.icon-print {
+  background-image: var(--icon-print);
+}
+
 .icon-reset {
   background-image: var(--icon-reset);
 }
@@ -293,6 +298,7 @@ body[data-theme="dark"] {
   .icon-burger-menu,
   .icon-email,
   .icon-github,
+  .icon-print,
   .icon-reset,
   .icon-user-minus,
   .icon-user-plus {
