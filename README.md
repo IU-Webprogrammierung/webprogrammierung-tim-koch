@@ -19,6 +19,12 @@ Der Formularversand wurde in Phase 3 von vorbereiteten `mailto:`-Links auf Forms
 
 Die Formulare werden per JavaScript und `fetch()` gesendet. Während des Sendens wird der jeweilige Button deaktiviert, nach dem Versand wird eine Erfolgsmeldung im Dialog angezeigt. Wenn der Versand fehlschlägt, bleiben die Eingaben erhalten und es wird ein vorbereiteter E-Mail-Fallback angeboten.
 
+### Auffindbarkeit und Linkvorschauen
+
+Alle Seiten besitzen individuelle Meta-Beschreibungen, Canonical-URLs sowie Open-Graph- und Twitter-Card-Metadaten. Dadurch können Suchmaschinen die Inhalte eindeutig zuordnen und geteilte Links mit passendem Titel, Beschreibung und Vorschaubild darstellen. Die 404-Seite ist mit `noindex, follow` von der Indexierung ausgeschlossen.
+
+Eine `robots.txt` erlaubt das Crawling der Website und verweist auf die XML-Sitemap. Die `sitemap.xml` enthält alle regulär indexierbaren Seiten und schließt die 404-Seite bewusst aus.
+
 ### Druckansicht
 
 Die Über-mich-Seite besitzt eine eigene Druckansicht, die über einen sichtbaren Button und die Druckfunktion des Browsers geöffnet werden kann. Eine ausschließlich für den Druck geladene `print.css` bereitet Profil, Skills, Zertifikate, Werdegang und Interessen als kompakte A4-Seite auf. Navigation, Einstellungen, Footer, Dialoge und Bedienelemente werden beim Drucken ausgeblendet. Seitenumbrüche, Schriftgrößen und Spaltenaufteilung sind gezielt für eine gut lesbare PDF- oder Papierausgabe angepasst.
@@ -86,7 +92,9 @@ Die Website besteht aktuell aus folgenden Seiten:
 ├── video.html
 ├── projects.html
 ├── imprint.html
-└── 404.html
+├── 404.html
+├── robots.txt
+└── sitemap.xml
 ```
 
 ### Barrierefreiheit

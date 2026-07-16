@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://iu-webprogrammierung.github.io/webprogrammierung-tim-koch/sitemap.xml
