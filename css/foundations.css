@@ -133,6 +133,7 @@ html {
   color: var(--color-text);
   background: var(--color-background);
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 body {
