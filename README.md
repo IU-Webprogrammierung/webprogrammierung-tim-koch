@@ -19,6 +19,14 @@ Der Formularversand wurde in Phase 3 von vorbereiteten `mailto:`-Links auf Forms
 
 Die Formulare werden per JavaScript und `fetch()` gesendet. Während des Sendens wird der jeweilige Button deaktiviert, nach dem Versand wird eine Erfolgsmeldung im Dialog angezeigt. Wenn der Versand fehlschlägt, bleiben die Eingaben erhalten und es wird ein vorbereiteter E-Mail-Fallback angeboten.
 
+### Datenschutzfreundliche Einbindungen
+
+Die Website verwendet kein Tracking und lädt keine externen Marketing- oder Analyse-Skripte. Deshalb ist kein allgemeiner Cookie-Banner eingebaut. Die gewählten Darstellungsoptionen werden ausschließlich lokal im Browser gespeichert.
+
+Das externe YouTube-Video nutzt eine Zwei-Klick-Lösung: Beim Öffnen des Videodialogs wird noch keine Verbindung zu YouTube hergestellt. Erst nach dem ausdrücklich ausgelösten Laden wird der Player von `youtube-nocookie.com` eingebunden. Beim Schließen wird die Verbindung wieder entfernt.
+
+Kontaktformular und Beta-Anmeldung weisen direkt vor dem Absenden auf die Datenübermittlung über Formspree hin und verlinken den ausführlichen Datenschutzabschnitt. Das Impressum wurde auf § 5 DDG aktualisiert und um Hinweise zu GitHub Pages, Formspree, lokalen Einstellungen, YouTube und Betroffenenrechten ergänzt.
+
 ### Auffindbarkeit und Linkvorschauen
 
 Alle Seiten besitzen individuelle Meta-Beschreibungen, Canonical-URLs sowie Open-Graph- und Twitter-Card-Metadaten. Dadurch können Suchmaschinen die Inhalte eindeutig zuordnen und geteilte Links mit passendem Titel, Beschreibung und Vorschaubild darstellen. Die 404-Seite ist mit `noindex, follow` von der Indexierung ausgeschlossen.

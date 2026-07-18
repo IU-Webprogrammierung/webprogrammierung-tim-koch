@@ -274,9 +274,44 @@ function openVideoDialog(dialog, updateUrl = false) {
         video.load();
       }
     });
+  });
+}
 
-    dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {
+function resetYouTubePlayer(dialog) {
+  const consentPanel = dialog.querySelector("[data-youtube-consent]");
+  const iframe = dialog.querySelector("iframe[data-src]");
+  const player = dialog.querySelector(".youtube-player");
+
+  if (!consentPanel || !iframe || !player) {
+    return;
+  }
+
+  iframe.removeAttribute("src");
+  iframe.hidden = true;
+  consentPanel.hidden = false;
+  player.classList.remove("is-loaded");
+}
+
+function initYouTubeConsent() {
+  const loadButtons = document.querySelectorAll("[data-load-youtube]");
+
+  loadButtons.forEach((button) => {
+    button.addEventListener("click", () => {
+      const dialog = button.closest(".video-dialog");
+      const consentPanel = dialog?.querySelector("[data-youtube-consent]");
+      const iframe = dialog?.querySelector("iframe[data-src]");
+      const player = dialog?.querySelector(".youtube-player");
+
+      if (!consentPanel || !iframe || !player) {
+        return;
+      }
+
       iframe.src = iframe.dataset.src;
+      iframe.hidden = false;
+      consentPanel.hidden = true;
+      player.classList.add("is-loaded");
+
+      requestAnimationFrame(() => iframe.focus());
     });
   });
 }
@@ -332,9 +367,7 @@ function initVideoDialogs() {
         video.load();
       });
 
-      dialog.querySelectorAll("iframe[data-src]").forEach((iframe) => {
-        iframe.removeAttribute("src");
-      });
+      resetYouTubePlayer(dialog);
 
       if (getDialogFromHash(".video-dialog") === dialog) {
         updateUrlHash();
@@ -1068,6 +1101,7 @@ initLayoutPartials().catch((error) => {
   console.error(error);
 });
 
+initYouTubeConsent();
 initVideoDialogs();
 initBetaTestDialog();
 initContactDialogs();

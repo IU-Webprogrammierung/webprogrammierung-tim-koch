@@ -186,12 +186,23 @@
       </form>
 
       <div class="dialog-content video-dialog-content">
-        <div class="video-player">
+        <div class="video-player youtube-player">
+          <div class="youtube-consent" data-youtube-consent>
+            <p class="youtube-consent-title">Externes Video von YouTube</p>
+            <p>
+              Beim Laden wird eine Verbindung zu YouTube hergestellt. Dabei können personenbezogene Daten
+              wie deine IP-Adresse an Google übertragen und Cookies oder ähnliche Technologien eingesetzt werden.
+            </p>
+            <p><a href="imprint.html#privacy-youtube">Mehr zum Datenschutz bei YouTube</a></p>
+            <button class="button button-primary" type="button" data-load-youtube>YouTube-Video laden</button>
+          </div>
           <iframe
-            data-src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=SL_mUEBVTNc3Lg-K"
+            class="youtube-frame"
+            data-src="https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ"
             title="Demo-Video von YouTube"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; fullscreen; gyroscope; picture-in-picture; web-share"
-            allowfullscreen>
+            allowfullscreen
+            hidden>
           </iframe>
         </div>
 
