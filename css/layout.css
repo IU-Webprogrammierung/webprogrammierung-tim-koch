@@ -1,6 +1,6 @@
 /* Platzhalter für nachgeladene Partials */
 [data-partial="partials/settings.html"] {
-  min-height: 2.9rem;
+  min-height: 3.5rem;
   border-bottom: 1px solid var(--color-border);
   background: var(--color-surface-muted);
 }
@@ -9,7 +9,7 @@
   position: sticky;
   top: 0;
   z-index: 30;
-  min-height: 4.05rem;
+  min-height: 4.0625rem;
   background: var(--color-surface);
   transition: background-color var(--transition-base), box-shadow var(--transition-base);
 }
